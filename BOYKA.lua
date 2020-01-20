@@ -82,14 +82,14 @@ echo -e "\e[36m"
 done
 ]])  
 file:close()  
-file = io.open("MS", "w")  
+file = io.open("BK", "w")  
 file:write([[
 #!/usr/bin/env bash
-cd $HOME/MARCOSBOT
+cd $HOME/BOYKA
 while(true) do
 rm -fr ../.telegram-cli
-screen -S MARCOSBOT -X kill
-screen -S MARCOSBOT ./MARCOSBOT
+screen -S BOYKA -X kill
+screen -S BOYKA ./BOYKA
 done
 ]])  
 file:close() 
@@ -8384,7 +8384,7 @@ database:incrby(bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_,1)
 if tonumber(database:get(bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)) >= 3 then
 database:del(bot_id..'SADD:NUM'..msg.chat_id_..msg.sender_user_id_)
 database:del(bot_id.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-send(msg.chat_id_, msg.id_,'??| اوبس لقد خسرت في اللعبه \n??| حظآ اوفر في المره القادمه \n🔰| كان الرقم الذي تم تخمينه { '..GETNUM..' }')
+send(msg.chat_id_, msg.id_,'📮| اوبس لقد خسرت في اللعبه \n??| حظآ اوفر في المره القادمه \n🔰| كان الرقم الذي تم تخمينه { '..GETNUM..' }')
 else
 send(msg.chat_id_, msg.id_,'⚠️| اوبس تخمينك غلط \n📌| ارسل رقم تخمنه مره اخرى ')
 end
