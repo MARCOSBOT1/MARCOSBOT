@@ -632,7 +632,7 @@ end
 return false
 end
 if SudoBot(msg) then
-local bl = '✨| اهلا عزيزي آلمـطـور\n👨‍💻| آنت آلمـطـور آلآسـآسـي للبوت\n ┉  ┉  ┉  ┉  ┉  ┉  ┉  ┉ء\n🔘| تسـتطـيع‌‏ آلتحگم باوامر البوت\n⚠️| قناة سورس البوت @BOBBW\n⌨️| من خلاال الكيبورت خاص بك'
+local bl = '✨| اهلا عزيزي آلمـطـور\n👨‍💻| آنت المطور آلآسـآسـي للبوت\n ┉  ┉  ┉  ┉  ┉  ┉  ┉  ┉ء\n🔘| تسـتطـيع‌‏ آلتحگم باوامر البوت\n⚠️| قناة سورس البوت @THE_M3RK\n⌨️| من خلاال الكيبورت خاص بك'
 local keyboard = {
 {'الاحصائيات 🔍'},
 {'تعطيل التواصل ✖️','تفعيل التواصل 🔛'},
@@ -6958,8 +6958,8 @@ end
 return false
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').."" then  
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').."" then  
+Namebot = (database:get(bot_id..'Name:Bot') or 'ماركوس')
 local BOYKA_Msg = {
 'اسمي مينو كول💘؟',
 'دا اشرب جاي مفارغلك',
@@ -7542,7 +7542,7 @@ end
 end
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').." غادر" then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_) then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'📫¦ تم مغادرة المجموعه') 
@@ -7551,7 +7551,7 @@ end
 return false  
 end
 if text == 'بوت' then
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+Namebot = (database:get(bot_id..'Name:Bot') or 'ماركوس')
 send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] 💘🌚') 
 end
 if text == 'الاحصائيات' or text == 'المجموعات' or text == 'المشتركين' then
@@ -9520,7 +9520,7 @@ if text and not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,t
 database:del(bot_id..'Spam:Texting'..msg.sender_user_id_) 
 end
 -------------------------------------------------------------------------------------------------------------- 
-local Name_Bot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+local Name_Bot = (database:get(bot_id..'Name:Bot') or 'ماركوس')
 if text and text:match('^'..Name_Bot..' ') then
 data.message_.content_.text_ = data.message_.content_.text_:gsub('^'..Name_Bot..' ','')
 end
