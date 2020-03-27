@@ -6391,7 +6391,7 @@ local text =
 ' }\n'..'📮| الايدي ← { '..idgp..
 ' }\n'..'📮| الايدي بالصوره ← { '..idph..
 ' }\n'..'📮| الرفع ← { '..setadd..
-' }\n'..'📮| الحظر ← { '..banm..' }\n\n┉  ┉  ┉  ┉ ┉  ┉  ┉  ┉  ┉  ┉\n🔖| CH » @THE_M3RK\n'
+' }\n'..'📮| الحظر ← { '..banm..' }\n\n┉  ┉  ┉  ┉ ┉  ┉  ┉  ┉  ┉  ┉\n🔖| CH » [Channal Marcos](https://t.me/THE_M3RK)\n'
 send(msg.chat_id_, msg.id_,text)     
 end    
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
