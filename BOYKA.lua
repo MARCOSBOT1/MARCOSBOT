@@ -2088,7 +2088,7 @@ end
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
 🔘┇اهلا بك في سورس ماركوس 🦅
- ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
+ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 🔰┇MARCOS TEAM
  ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 📮┇[قناه السورس](t.me/THE_M3RK) 
@@ -2100,7 +2100,6 @@ Text = [[
 🔖┇[كليشه التنصيب](https://t.me/THE_M3RK/6691)
 
 📌┇[لــ تواصل](t.me/Ra_m9_bot)
-ء ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -2733,6 +2732,16 @@ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dat
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فتح الملفات ')  
 end,nil)   
 end
+elseif text == 'قفل الانلاين' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:set(bot_id.."lock:inline"..msg.chat_id_,'del')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'BOBBW')..') \n🔘| تـم قفـل الانلاين ')  
+end,nil)
+if text == 'فتح الانلاين' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:del(bot_id.."lock:inline"..msg.chat_id_)  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'BOBBW')..') \n🔘| تـم فتح الانلاين ')  
+end,nil)
 if text == 'قفل السيلفي' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 database:set(bot_id.."lock:Unsupported"..msg.chat_id_,'del')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -8938,6 +8947,7 @@ Text = [[
 🔘| قفل ← فتح الفارسيه
 🔘| قفل ← فتح الفشار
 🔘| قفل ← فتح النكليزيه
+🔘| قفل ← فتح الانلاين
  ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉
 📮| [Channel MARCOS 🦅](t.me/THE_M3RK)
 ]]
