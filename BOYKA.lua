@@ -680,7 +680,7 @@ local keyboard = {
 {'تفعيل البوت الخدمي 🔓','تعطيل البوت الخدمي🔏'},
 {'تنظيف الكروبات 🗑️','تنظيف المشتركين 🗑️'},
 {'جلب نسخه احتياطيه 📂','الاصدار 📟'},
-{'تحديث السورس ™'},
+{'تحديث السورس ™','معلومات السيرفر 📊'},
 {'الغاء ✖'}
 }
 send_inline_key(msg.chat_id_,bl,keyboard)
@@ -838,6 +838,15 @@ end
 if text == 'الاصدار 📟' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
 send(msg.chat_id_, msg.id_,'📡| اصدار سورس ماركوس \n📟| الاصدار ←{ 1.2v}') 
+end
+if text == 'معلومات السيرفر 📊' and SudoBot(msg) then 
+ local text2 = 'Info Server : \n'
+  local BOYKA1 = database:info()
+  text2 = text2..'1 - *Uptime Days* : `'..BOYKA1.server.uptime_in_days..'('..BOYKA1.server.uptime_in_seconds..' seconds)`\n'
+  text2 = text2..'2 - *Commands Processed* : `'..BOYKA1.stats.total_commands_processed..'`\n'
+  text2 = text2..'3 - *Expired Keys* : `'..BOYKA1.stats.expired_keys..'`\n'
+  text2 = text2..'4 - *Ops/sec* : `'..BOYKA1.stats.instantaneous_ops_per_sec..'`\n'
+send(msg.chat_id_, msg.id_, text2)  
 end
 if text == 'معلومات الكيبورت 💬' and SudoBot(msg) then 
 database:del(bot_id..'Sart:Bot') 
@@ -2078,8 +2087,8 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-🔘┇اهلا بك في سورس ماركوس 
- ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
+🔘┇اهلا بك في سورس ماركوس 🦅
+ ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
 🔰┇MARCOS TEAM
  ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 📮┇[قناه السورس](t.me/THE_M3RK) 
@@ -2088,9 +2097,10 @@ Text = [[
 
 👮‍♂️┇[مطور السورس الثاني](t.me/Mi_20)
 
-🔖┇[كليشه التنصيب](https://t.me/THE_M3RK/1)
+🔖┇[كليشه التنصيب](https://t.me/THE_M3RK/6691)
 
 📌┇[لــ تواصل](t.me/Ra_m9_bot)
+ء ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -7909,10 +7919,10 @@ end
 end
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" then  
-if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_) then 
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" or text == 'غادر' then  
+if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
-send(msg.chat_id_, msg.id_,'📫¦ تم مغادرة المجموعه') 
+send(msg.chat_id_, msg.id_,'🔰| تم مغادرة المجموعه') 
 database:srem(bot_id..'Chek:Groups',msg.chat_id_)  
 end
 return false  
