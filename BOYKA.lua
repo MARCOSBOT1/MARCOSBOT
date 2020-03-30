@@ -680,7 +680,7 @@ local keyboard = {
 {'تفعيل البوت الخدمي 🔓','تعطيل البوت الخدمي🔏'},
 {'تنظيف الكروبات 🗑️','تنظيف المشتركين 🗑️'},
 {'جلب نسخه احتياطيه 📂','الاصدار 📟'},
-{'تحديث السورس ™'},
+{'تحديث السورس ™','معلومات السيرفر 🗃️'},
 {'الغاء ✖'}
 }
 send_inline_key(msg.chat_id_,bl,keyboard)
@@ -914,6 +914,15 @@ database:setex(bot_id.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_i
 send(msg.chat_id_, msg.id_,"📥| ارسل لي التوجيه الان") 
 return false
 end 
+if text == 'معلومات السيرفر 🗃️' and SudoBot(msg) then 
+ local text2 = 'Info Server : \n'
+  local BOYKA1 = database:info()
+  text2 = text2..'1 - *Uptime Days* : `'..BOYKA1.server.uptime_in_days..'('..BOYKA1.server.uptime_in_seconds..' seconds)`\n'
+  text2 = text2..'2 - *Commands Processed* : `'..BOYKA1.stats.total_commands_processed..'`\n'
+  text2 = text2..'3 - *Expired Keys* : `'..BOYKA1.stats.expired_keys..'`\n'
+  text2 = text2..'4 - *Ops/sec* : `'..BOYKA1.stats.instantaneous_ops_per_sec..'`\n'
+send(msg.chat_id_, msg.id_, text2)  
+end
 if text == 'جلب نسخه احتياطيه 📂' and SudoBot(msg) then 
 GetFile_Bot(msg)
 end
@@ -2078,19 +2087,20 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-🔘┇اهلا بك في سورس ماركوس 
- ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
-🔰┇MARCOS TEAM
- ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+🔘┇اهلا بك في سورس ماركوس 🦅
+ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ 
+🔰┇𝕄𝔸ℝℂ𝕆𝕊 𝕋𝔼𝔸𝕄
+ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 📮┇[قناه السورس](t.me/THE_M3RK) 
 
 👮‍♂️┇[مطور السورس الاول](t.me/Ra_m9)
 
 👮‍♂️┇[مطور السورس الثاني](t.me/Mi_20)
 
-🔖┇[كليشه التنصيب](https://t.me/THE_M3RK/1)
+🔖┇[كليشه التنصيب](https://t.me/THE_M3RK/6691)
 
 📌┇[لــ تواصل](t.me/Ra_m9_bot)
+┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -2273,6 +2283,11 @@ database:set(bot_id..'lock:Fars'..msg.chat_id_,true)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم قفـل النكليزيه ')  
 end,nil)
+elseif text == 'قفل الانلاين' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:set(bot_id.."lock:inline"..msg.chat_id_,'del')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'BOBBW')..') \n🔘| تـم قفـل الانلاين ')  
+end,nil)
 elseif text == 'قفل تعديل الميديا' and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
 database:set(bot_id..'lock:edit'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -2288,6 +2303,11 @@ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dat
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم قفـل جميع الاوامر ')  
 end,nil)   
 end
+if text == 'فتح الانلاين' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:del(bot_id.."lock:inline"..msg.chat_id_)  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'BOBBW')..') \n🔘| تـم فتح الانلاين ')  
+end,nil)
 if text == 'فتح الاضافه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id.."lock:AddMempar"..msg.chat_id_)  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -7909,10 +7929,10 @@ end
 end
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" then  
-if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_) then 
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" or text == 'غادر' then  
+if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
-send(msg.chat_id_, msg.id_,'📫¦ تم مغادرة المجموعه') 
+send(msg.chat_id_, msg.id_,'🔰| تم مغادرة المجموعه') 
 database:srem(bot_id..'Chek:Groups',msg.chat_id_)  
 end
 return false  
@@ -7921,15 +7941,33 @@ if text == 'بوت' then
 Namebot = (database:get(bot_id..'Name:Bot') or 'ماركوس')
 send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] 💘🌚') 
 end
-if text == 'الاحصائيات' or text == 'المجموعات' or text == 'المشتركين' then
+if text == 'الاحصائيات' then
 if Sudo(msg) then 
 local Groups = database:scard(bot_id..'Chek:Groups')  
 local Users = database:scard(bot_id..'User_Bot')  
-Text = '🔰| احصائيات البوت\n'..'👥| عدد المجموعات »{'..Groups..'}'..'\n👤| عدد المشتركين »{'..Users..'}'
+Text = 'احصائيات\n'..'👥|عدد المجموعات ← {'..Groups..'}'..'\n👤| عدد المشتركين ← {'..Users..'}'
 send(msg.chat_id_, msg.id_,Text) 
 end
 return false
 end
+if text == 'المجموعات' then
+if Sudo(msg) then 
+local Groups = database:scard(bot_id..'Chek:Groups')  
+local Users = database:scard(bot_id..'User_Bot')  
+Text = '🚸| عدد المجموعات ← {`'..Groups..'`}'
+send(msg.chat_id_, msg.id_,Text) 
+end
+return false
+end
+if text == 'المشتركين' then
+if Sudo(msg) then 
+local Groups = database:scard(bot_id..'Chek:Groups')  
+local Users = database:scard(bot_id..'User_Bot')  
+Text = '📬| عدد المشتركين ← {`'..Users..'|}'
+send(msg.chat_id_, msg.id_,Text) 
+end
+return false
+end>
 if text == 'مسح المشتركين' and is_devtaha(msg) then   
 local list = tahadevstorm:smembers(DEVSTOR..'usersbot')   
 local pv = 0
@@ -8077,7 +8115,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..result.sender_
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'🎟️| ايديه »(`'..iduser..'`)\n🎭| معرفه »('..username..')\n📌| رتبته »('..rtp..')\n✏| تعديلاته »('..edit..')\n🗳️| النقود »('..NUMPGAME..')\n🔖| جهاته »('..Contact..')\n📨| رسائله »('..Msguser..')')
+send(msg.chat_id_, msg.id_,'??️| ايديه »(`'..iduser..'`)\n🎭| معرفه »('..username..')\n📌| رتبته »('..rtp..')\n✏| تعديلاته »('..edit..')\n🗳️| النقود »('..NUMPGAME..')\n🔖| جهاته »('..Contact..')\n📨| رسائله »('..Msguser..')')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -8928,6 +8966,7 @@ Text = [[
 🔘| قفل ← فتح الفارسيه
 🔘| قفل ← فتح الفشار
 🔘| قفل ← فتح النكليزيه
+🔘| قفل ← فتح الانلاين
  ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉
 📮| [Channel MARCOS 🦅](t.me/THE_M3RK)
 ]]
