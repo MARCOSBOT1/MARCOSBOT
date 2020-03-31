@@ -7918,7 +7918,7 @@ end
 end
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" or text == '' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').." غادر" or text == 'غادرغادرغادر' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'🔰| تم مغادرة المجموعه') 
