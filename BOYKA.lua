@@ -7919,10 +7919,10 @@ end
 end
 
 -------------------------------
-if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').."مغادره" or text == 'مغادره' or text == 'مغادرة' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ماركوس').."مغادره" then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
-send(msg.chat_id_, msg.id_,'🔰| مو صوجكم يلا باي') 
+send(msg.chat_id_, msg.id_,'مغادر مغادر 😒☹️') 
 database:srem(bot_id..'Chek:Groups',msg.chat_id_)  
 end
 return false  
