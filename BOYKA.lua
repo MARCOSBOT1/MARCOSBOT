@@ -7871,6 +7871,7 @@ send(msg.chat_id_, msg.id_,'🚸| ارسل الكلمه التري تريد حذ
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
 return false 
 end
+-----------
 if text and not database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
 local anemi = database:get(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
