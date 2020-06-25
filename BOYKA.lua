@@ -7581,29 +7581,29 @@ text = text:gsub('"','')
 text = text:gsub("'",'') 
 text = text:gsub('`','') 
 text = text:gsub('*','') 
-database:set(bot_id.."Add:Rd:Sudo:Text"..test, text)  
+database:set(bot_id.."Add:Rd:Sudo:Text"..test,msg.text)  
 end  
 if msg.content_.audio_ then
-database:set(bot_id.."Add:Rd:Sudo:Audio"..test, msg.content_.audio_.audio_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Sudo:Audio"..test, msg.content_.audio_.audio_.persistent_id_,msg.text)  
 end
 if msg.content_.document_ then
-database:set(bot_id.."Add:Rd:Sudo:File"..test, msg.content_.document_.document_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Sudo:File"..test, msg.content_.document_.document_.persistent_id_,msg.text)  
 end
 if msg.content_.video_ then
-database:set(bot_id.."Add:Rd:Sudo:Video"..test, msg.content_.video_.video_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Sudo:Video"..test, msg.content_.video_.video_.persistent_id_,msg.text)  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
-photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_
+photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_,msg.text
 end
 if msg.content_.photo_.sizes_[1] then
-photo_in_group = msg.content_.photo_.sizes_[1].photo_.persistent_id_
+photo_in_group = msg.content_.photo_.sizes_[1].photo_.persistent_id_,msg.text
 end
 if msg.content_.photo_.sizes_[2] then
-photo_in_group = msg.content_.photo_.sizes_[2].photo_.persistent_id_
+photo_in_group = msg.content_.photo_.sizes_[2].photo_.persistent_id_,msg.text
 end	
 if msg.content_.photo_.sizes_[3] then
-photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
+photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_,msg.text
 end
 database:set(bot_id.."Add:Rd:Sudo:Photo"..test, photo_in_group)  
 end
