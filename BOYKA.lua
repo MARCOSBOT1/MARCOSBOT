@@ -7829,6 +7829,14 @@ database:srem(bot_id..'List:Manager'..msg.chat_id_..'', text)
 return false
 end
 end
+
+if text =="اضف ردد" and msg.GroupActive then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:setex(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
+redis:del(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
+return "📭¦ حسننا , الان ارسل كلمه الرد \n-"
+end
+
 if text == 'اضف رد' and Manager(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
