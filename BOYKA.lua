@@ -2103,19 +2103,19 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-🕹️︙↬ MARCOS TEAM 🦅
+🕹️︙ MARCOS TEAM 🦅
 … … … … … … … … … … …
-📮︙↬ (t.me/THE_M3RK)[Source Channel]
+📮︙↬[Source Channel](t.me/THE_M3RK)
 
-🗂️︙↬ (t.me/THE_M2RK)[Source files]
+🗂️︙↬[Source files](t.me/THE_M2RK)
 
-👲︙↬ (t.me/Ra_m9)[Developer]
+👲︙↬[Developer](t.me/Ra_m9)
 
-👲🏻︙↬ (t.me/Mi_20)[Developer]
+👲🏻︙↬[Developer](t.me/DDDI2)
 
-📍︙↬ (https://t.me/THE_M3RK/6754)[The way his inauguration]
+📍︙↬[The way his inauguration](https://t.me/THE_M3RK/6754)
 … … … … … … … … … … …
-📌︙↬ (t.me/Ra_m9_bot)[To contact us]
+📌︙↬[To contact us](t.me/Ra_m9_bot)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
