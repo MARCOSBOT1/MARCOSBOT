@@ -2103,19 +2103,19 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-🕹️︙ MARCOS TEAM 🦅
-… … … … … … … … … … …
-📮︙↬ (t.me/THE_M3RK)[Source Channel]
+🔘┇اهلا بك في سورس ماركوس 🦅
+ ء━━━━━━━━━━━━━━
+🔰┇MARCOS TEAM
+ ء━━━━━━━━━━━━━━
+📮┇[قناه السورس](t.me/THE_M3RK) 
 
-🗂️︙↬ (t.me/THE_M2RK)[Source files]
+👮‍♂️┇[مطور السورس الاول](t.me/Ra_m9)
 
-👲︙↬ (t.me/Ra_m9)[Developer]
+👮‍♂️┇[مطور السورس الثاني](t.me/Mi_20)
 
-👲🏻︙↬ (t.me/DDDI2)[Developer]
+🔖┇[كليشه التنصيب](https://t.me/THE_M3RK/6691)
 
-📍︙↬ (https://t.me/THE_M3RK/6754)[The way his inauguration]
-… … … … … … … … … … …
-📌︙↬ (t.me/Ra_m9_bot)[To contact us]
+📌┇[لــ تواصل](t.me/Ra_m9_bot)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -2283,6 +2283,21 @@ database:set(bot_id..'lock:edit'..msg.chat_id_,true)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم قفـل تعديل ')  
 end,nil)   
+elseif text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:set(bot_id..'lock:Fshar'..msg.chat_id_,true) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘|  تـم قفـل الفشار ')  
+end,nil)  
+elseif text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:set(bot_id..'lock:Fars'..msg.chat_id_,true) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم قفـل الفارسيه ')  
+end,nil)   
+elseif text == 'قفل النكليزيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:set(bot_id..'lock:Fars'..msg.chat_id_,true) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم قفـل النكليزيه ')  
+end,nil)
 elseif text == 'قفل تعديل الميديا' and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
 database:set(bot_id..'lock:edit'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -2339,6 +2354,21 @@ database:del(bot_id..'lock:edit'..msg.chat_id_)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فـتح تعديل  ')  
 end,nil)   
+elseif text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فـتح الفشار  ')  
+end,nil)   
+elseif text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فـتح الفارسيه  ')  
+end,nil)   
+elseif text == 'فتح النكليزيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:del(bot_id..'lock:Fars'..msg.chat_id_) 
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤¦ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فـتح النكليزيه  ')  
+end,nil)
 elseif text == 'فتح التعديل الميديا' and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
 database:del(bot_id..'lock:edit'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -2822,26 +2852,6 @@ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dat
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فتح الكلايش ')  
 end,nil)   
 end
-elesif text == 'قفل التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:set(bot_id..'lock:tagrvrbot'..msg.chat_id_,true)   
-list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Fars","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
-for i,lock in pairs(list) do 
-database:set(bot_id..lock..msg.chat_id_,'del')    
-end
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤︙بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n⌯︙تـم قفـل التفليش ')  
-end,nil)   
-end
-elesif text == 'فتح التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:del(bot_id..'lock:tagrvrbot'..msg.chat_id_)   
-list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Fars","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
-for i,lock in pairs(list) do 
-database:del(bot_id..lock..msg.chat_id_)    
-end
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤︙بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n⌯︙تـم فـتح التفليش ')  
-end,nil)   
-end
 if text == 'قفل التكرار بالطرد' and Mod(msg) then 
 database:hset(bot_id.."flooding:settings:"..msg.chat_id_ ,"flood",'kick')  
 send(msg.chat_id_, msg.id_,'🔘| تم قفل التكرار بالطرد\n⛔| الحاله ←الطرد')
@@ -2858,7 +2868,6 @@ elseif text == 'فتح التكرار' and Mod(msg) then
 database:hdel(bot_id.."flooding:settings:"..msg.chat_id_ ,"flood")  
 send(msg.chat_id_, msg.id_,'🔘| تم فتح التكرار')
 end 
-
 --------------------------------------------------------------------------------------------------------------
 if text == 'تحديث' and SudoBot(msg) then    
 dofile('BOYKA.lua')  
@@ -8686,17 +8695,6 @@ end
 end
 end
 
-if text:match("^كول (.*)$") then
-local txt = {string.match(text, "^(كول) (.*)$")}
-send(msg.chat_id_, 0, txt[2], "md")
-local id = msg.id_
-local msgs = {
-[0] = id
-}
-local chat = msg.chat_id_
-delete_msg(chat, msgs)
-end
-
 if text and text:match("^تغير رد المطور (.*)$") and Manager(msg) then
 local Teext = text:match("^تغير رد المطور (.*)$") 
 database:set(bot_id.."Sudo:Rd"..msg.chat_id_,Teext)
@@ -8954,7 +8952,9 @@ Text = [[
 🔒| قفل ⇚ فتح الماركداون
 🔒| قفل ⇚ فتح الكلايش
 🔒| قفل ⇚ فتح التكرار
-🔒| قفل ⇚ فتح التفليش
+🔒| قفل ⇚ فتح الفارسيه
+🔒| قفل ⇚ فتح الفشار
+🔒| قفل ⇚ فتح النكليزيه
 ء━━━━━━━━━━━━━━
 📮| [Channel MARCOS 🦅](t.me/THE_M3RK)
 ]]
@@ -9317,7 +9317,6 @@ Text = [[
 ء━━━━━━━━━━━━━━
 🔘| عرض معلوماتك ⇓⇓
 ء━━━━━━━━━━━━
-🏮| كول + الكلمة
 🔖| رسايلي ⇚ مسح رسايلي 
 🔖| رتبتي ⇚ سحكاتي 
 🔖| مسح سحكاتي ⇚ المنشئ 
