@@ -7581,29 +7581,29 @@ text = text:gsub('"','')
 text = text:gsub("'",'') 
 text = text:gsub('`','') 
 text = text:gsub('*','') 
-database:set(bot_id.."Add:Rd:Sudo:Text"..test,msg.text)  
+database:set(bot_id.."Add:Rd:Sudo:Text"..test, text)  
 end  
 if msg.content_.audio_ then
-database:set(bot_id.."Add:Rd:Sudo:Audio"..test, msg.content_.audio_.audio_.persistent_id_,msg.text)  
+database:set(bot_id.."Add:Rd:Sudo:Audio"..test, msg.content_.audio_.audio_.persistent_id_)  
 end
 if msg.content_.document_ then
-database:set(bot_id.."Add:Rd:Sudo:File"..test, msg.content_.document_.document_.persistent_id_,msg.text)  
+database:set(bot_id.."Add:Rd:Sudo:File"..test, msg.content_.document_.document_.persistent_id_)  
 end
 if msg.content_.video_ then
-database:set(bot_id.."Add:Rd:Sudo:Video"..test, msg.content_.video_.video_.persistent_id_,msg.text)  
+database:set(bot_id.."Add:Rd:Sudo:Video"..test, msg.content_.video_.video_.persistent_id_)  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
-photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_,msg.text
+photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_
 end
 if msg.content_.photo_.sizes_[1] then
-photo_in_group = msg.content_.photo_.sizes_[1].photo_.persistent_id_,msg.text
+photo_in_group = msg.content_.photo_.sizes_[1].photo_.persistent_id_
 end
 if msg.content_.photo_.sizes_[2] then
-photo_in_group = msg.content_.photo_.sizes_[2].photo_.persistent_id_,msg.text
+photo_in_group = msg.content_.photo_.sizes_[2].photo_.persistent_id_
 end	
 if msg.content_.photo_.sizes_[3] then
-photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_,msg.text
+photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 database:set(bot_id.."Add:Rd:Sudo:Photo"..test, photo_in_group)  
 end
@@ -7802,39 +7802,32 @@ if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_
 send(msg.chat_id_, msg.id_,'📥| ارسل الرد الذي تريده سواء كان {صوره,فيديو,متحركه,ملصق,بصمه,صوت}')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
 database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_,msg.text)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_,msg.text)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_,msg.text)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_,msg.text)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_,msg.text)
 database:sadd(bot_id..'List:Manager'..msg.chat_id_..'', text)
 return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
 send(msg.chat_id_, msg.id_,'📌| تم ازالة الرد ')
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_,msg.text)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_,msg.text)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_,msg.text)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_,msg.text)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_,msg.text)
+database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,msg.text)
 database:srem(bot_id..'List:Manager'..msg.chat_id_..'', text)
 return false
 end
-end
-
-if text =="اضف ردد" and msg.GroupActive then
-if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
-redis:setex(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
-redis:del(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
-return "📭¦ حسننا , الان ارسل كلمه الرد \n-"
 end
 
 if text == 'اضف رد' and Manager(msg) then
