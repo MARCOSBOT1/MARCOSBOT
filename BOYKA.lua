@@ -7716,7 +7716,7 @@ database:del(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
-database:del(bot_id..'List:Manager'..msg.chat_id_)
+database:del(bot_id..'List:Manager'..msg.chat_id_,msg.text)
 end
 send(msg.chat_id_, msg.id_,"📌| تم مسح ردود المدير")
 end
@@ -7749,17 +7749,17 @@ text = "⚠️| لا يوجد ردود للمدير"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
-if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
+if text or msg.content_Messagesticker_ or msg.content_Messagevoice_ or msg.content_Messageanimation_ or msg.content_Messageaudio_ or msg.content_Messagedocument_ or msg.content_Messagephoto_ or msg.content_Messagevideo_ then  
 local test = database:get(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_..'')
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
 database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
-if msg.content_.sticker_ then   
+if msg.content_Messagesticker_ then   
 database:set(bot_id.."Add:Rd:Manager:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
-if msg.content_.voice_ then  
+if msg.content_Messagevoice_ then  
 database:set(bot_id.."Add:Rd:Manager:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
 end   
-if msg.content_.animation_ then   
+if msg.content_Messageanimation_ then   
 database:set(bot_id.."Add:Rd:Manager:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
@@ -7839,7 +7839,7 @@ send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت ي
 end
 return false
 end
-send(msg.chat_id_, msg.id_,'💠| ارسل الكلمه التري تريد اضافتها')
+send(msg.chat_id_, msg.id_,'💠| ارسل الكلمه التي تريد اضافتها')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -9089,7 +9089,7 @@ Text = [[
 🎗️| اهلا بك عزيزي √
 🔖| اوامر المنشئين للمجموعه كتالي⇓⇓
 ء━━━━━━━━━━━━━━
-💭| اضف امر
+??| اضف امر
 💭| حذف امر
 📍| اسم بوت + الرتبه
 📍| حذف الاوامر المضافه
