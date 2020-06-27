@@ -7749,17 +7749,17 @@ text = "⚠️| لا يوجد ردود للمدير"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
-if text or msg.content_Messagesticker_ or msg.content_Messagevoice_ or msg.content_Messageanimation_ or msg.content_Messageaudio_ or msg.content_Messagedocument_ or msg.content_Messagephoto_ or msg.content_Messagevideo_ then  
+if text or msg.content_MessageSticker_ or msg.content_MessageVoice_ or msg.content_MessageAnimation_ or msg.content_MessageAudio_ or msg.content_MessageDocument_ or msg.content_MessagePhoto_ or msg.content_MessageVideo_ then  
 local test = database:get(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_..'')
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
 database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
-if msg.content_Messagesticker_ then   
+if msg.content_MessageSticker_ then   
 database:set(bot_id.."Add:Rd:Manager:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
-if msg.content_Messagevoice_ then  
+if msg.content_MessageVoice_ then  
 database:set(bot_id.."Add:Rd:Manager:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
 end   
-if msg.content_Messageanimation_ then   
+if msg.content_MessageAnimation_ then   
 database:set(bot_id.."Add:Rd:Manager:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
@@ -7769,16 +7769,16 @@ text = text:gsub('`','')
 text = text:gsub('*','') 
 database:set(bot_id.."Add:Rd:Manager:Text"..test..msg.chat_id_, text)  
 end  
-if msg.content_Messageaudio_ then
+if msg.content_MessageAudio_ then
 database:set(bot_id.."Add:Rd:Manager:Audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
 end
-if msg.content_Messagedocument_ then
+if msg.content_MessageDocument_ then
 database:set(bot_id.."Add:Rd:Manager:File"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
 end
-if msg.content_Messagevideo_ then
+if msg.content_MessageVideo_ then
 database:set(bot_id.."Add:Rd:Manager:Video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
 end
-if msg.content_Messagephoto_ then
+if msg.content_MessagePhoto_ then
 if msg.content_.photo_.sizes_[0] then
 photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_
 end
