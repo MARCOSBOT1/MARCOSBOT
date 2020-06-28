@@ -5520,26 +5520,26 @@ end
 ------------------------------------------------------------------------
 if text =="اضف رد بالصوره" and Manager(msg) then
 if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
-redis:setex(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
-redis:del(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
+redis:setex(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
+redis:del(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_)
 return "📭¦ حسننا , الان ارسل كلمه الرد \n-"
 end
 if text == 'مسح رد بالصوره' and Manager(msg) then
 if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
-redis:set(boss..'delrd:'..msg.sender_user_id_,true)
+redis:set(bot_id..'delrd:'..msg.sender_user_id_,true)
 return "📭¦ حسننا عزيزي  ✋🏿\n🗯¦ الان ارسل الرد لمسحها من  للمجموعه 🍃"
 end
 
 if text == 'الردودو' then
 
 if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
-local names  	= redis:hkeys(boss..'replay:'..msg.chat_id_)
-local photo 	= redis:hkeys(boss..'replay_photo:group:'..msg.chat_id_)
-local voice  	= redis:hkeys(boss..'replay_voice:group:'..msg.chat_id_)
-local imation 	= redis:hkeys(boss..'replay_animation:group:'..msg.chat_id_)
-local audio 	= redis:hkeys(boss..'replay_audio:group:'..msg.chat_id_)
-local sticker 	= redis:hkeys(boss..'replay_sticker:group:'..msg.chat_id_)
-local video 	= redis:hkeys(boss..'replay_video:group:'..msg.chat_id_)
+local names  	= redis:hkeys(bot_id..'replay:'..msg.chat_id_)
+local photo 	= redis:hkeys(bot_id..'replay_photo:group:'..msg.chat_id_)
+local voice  	= redis:hkeys(bot_id..'replay_voice:group:'..msg.chat_id_)
+local imation 	= redis:hkeys(bot_id..'replay_animation:group:'..msg.chat_id_)
+local audio 	= redis:hkeys(bot_id..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:hkeys(bot_id..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:hkeys(bot_id..'replay_video:group:'..msg.chat_id_)
 if #names==0 and #photo==0 and #voice==0 and #imation==0 and #audio==0 and #sticker==0 and #video==0 then 
 return '🚸*¦* لا يوجد ردود مضافه حاليا \n❕' 
 end
@@ -5562,16 +5562,16 @@ end
 
 if text == 'مسح الردودو' and Manager(msg) then
 if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
-local names 	= redis:exists(boss..'replay:'..msg.chat_id_)
-local photo 	= redis:exists(boss..'replay_photo:group:'..msg.chat_id_)
-local voice 	= redis:exists(boss..'replay_voice:group:'..msg.chat_id_)
-local imation   = redis:exists(boss..'replay_animation:group:'..msg.chat_id_)
-local audio	 	= redis:exists(boss..'replay_audio:group:'..msg.chat_id_)
-local sticker 	= redis:exists(boss..'replay_sticker:group:'..msg.chat_id_)
-local video 	= redis:exists(boss..'replay_video:group:'..msg.chat_id_)
+local names 	= redis:exists(bot_id..'replay:'..msg.chat_id_)
+local photo 	= redis:exists(bot_id..'replay_photo:group:'..msg.chat_id_)
+local voice 	= redis:exists(bot_id..'replay_voice:group:'..msg.chat_id_)
+local imation   = redis:exists(bot_id..'replay_animation:group:'..msg.chat_id_)
+local audio	 	= redis:exists(bot_id..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:exists(bot_id..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:exists(bot_id..'replay_video:group:'..msg.chat_id_)
 if names or photo or voice or imation or audio or sticker or video then
-redis:del(boss..'replay:'..msg.chat_id_,boss..'replay_photo:group:'..msg.chat_id_,boss..'replay_voice:group:'..msg.chat_id_,
-boss..'replay_animation:group:'..msg.chat_id_,boss..'replay_audio:group:'..msg.chat_id_,boss..'replay_sticker:group:'..msg.chat_id_,boss..'replay_video:group:'..msg.chat_id_)
+redis:del(bot_id..'replay:'..msg.chat_id_,bot_id..'replay_photo:group:'..msg.chat_id_,bot_id..'replay_voice:group:'..msg.chat_id_,
+bot_id..'replay_animation:group:'..msg.chat_id_,bot_id..'replay_audio:group:'..msg.chat_id_,bot_id..'replay_sticker:group:'..msg.chat_id_,bot_id..'replay_video:group:'..msg.chat_id_)
 return "✓ تم مسح كل الردود 🚀"
 else
 return '🚸*¦* لا يوجد ردود ليتم مسحها \n❕'
@@ -5580,15 +5580,15 @@ end
 
 
 --====================== Reply Only Group =====================================
-if redis:get(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_) and redis:get(boss..'replay1'..msg.chat_id_..msg.sender_user_id_) then
-local klma = redis:get(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
-if msg.content_ and msg.content_.caption_ then redis:hset(boss..':caption_replay:'..msg.chat_id_,klma,msg.content_.caption_) end
+if redis:get(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_) and redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_) then
+local klma = redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_)
+if msg.content_ and msg.content_.caption_ then redis:hset(bot_id..':caption_replay:'..msg.chat_id_,klma,msg.content_.caption_) end
 if msg.text then 
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 if utf8.len(msg.text) > 550 then 
 return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه جواب الرد باكثر من 550 حرف تم الغاء الامر\n❕")
 end
-redis:hset(boss..'replay:'..msg.chat_id_,klma,Flter_Markdown(msg.text))
+redis:hset(bot_id..'replay:'..msg.chat_id_,klma,Flter_Markdown(msg.text))
 return sendMsg(msg.chat_id_,msg.id_,'(['..klma..'])\n  ✓ تم اضافت الرد 🚀 \n-')
 elseif msg.content_.ID == "MessagePhoto" then
 if msg.content_.photo_.sizes_[3] then 
@@ -5596,28 +5596,28 @@ photo_id = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 else 
 photo_id = msg.content_.photo_.sizes_[0].photo_.persistent_id_
 end
-redis:hset(boss..'replay_photo:group:'..msg.chat_id_,klma,photo_id)
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:hset(bot_id..'replay_photo:group:'..msg.chat_id_,klma,photo_id)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه صوره للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوره الاتيه .')
 elseif msg.content_.ID == "MessageVoice" then
-redis:hset(boss..'replay_voice:group:'..msg.chat_id_,klma,msg.content_.voice_.voice_.persistent_id_)
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:hset(bot_id..'replay_voice:group:'..msg.chat_id_,klma,msg.content_.voice_.voice_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه بصمه صوت للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لسماع البصمه الاتيه .')
 elseif msg.content_.ID == "MessageAnimation" then
-redis:hset(boss..'replay_animation:group:'..msg.chat_id_,klma,msg.content_.animation_.animation_.persistent_id_)
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:hset(bot_id..'replay_animation:group:'..msg.chat_id_,klma,msg.content_.animation_.animation_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه متحركه للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوره الاتيه .')
 elseif msg.content_.ID == "MessageVideo" then
-redis:hset(boss..'replay_video:group:'..msg.chat_id_,klma,msg.content_.video_.video_.persistent_id_)
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:hset(bot_id..'replay_video:group:'..msg.chat_id_,klma,msg.content_.video_.video_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه فيديو للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الفيديو الاتي .')
 elseif msg.content_.ID == "MessageAudio" then
-redis:hset(boss..'replay_audio:group:'..msg.chat_id_,klma,msg.content_.audio_.audio_.persistent_id_)
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:hset(bot_id..'replay_audio:group:'..msg.chat_id_,klma,msg.content_.audio_.audio_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه للصوت للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوت الاتي .')
 elseif msg.content_.ID == "MessageSticker" then
-redis:hset(boss..'replay_sticker:group:'..msg.chat_id_,klma,msg.content_.sticker_.sticker_.persistent_id_)
-redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+redis:hset(bot_id..'replay_sticker:group:'..msg.chat_id_,klma,msg.content_.sticker_.sticker_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
 return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه ملصق للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الملصق الاتي .')
 end  
 
@@ -5626,43 +5626,43 @@ end
 if not msg.GroupActive then return false end
 if msg.text then
 
-if redis:get(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_) then -- استقبال الرد للمجموعه فقط
+if redis:get(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_) then -- استقبال الرد للمجموعه فقط
 
-if not redis:get(boss..'replay1'..msg.chat_id_..msg.sender_user_id_) then  -- كلمه الرد
+if not redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_) then  -- كلمه الرد
 if utf8.len(msg.text) > 25 then 
 return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه كلمه الرد باكثر من 25 حرف \n❕")
 end
-redis:hdel(boss..'replay:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_photo:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_voice:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_animation:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_audio:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_sticker:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_video:group:'..msg.chat_id_,msg.text)
-redis:setex(boss..'replay1'..msg.chat_id_..msg.sender_user_id_,300,msg.text)
+redis:hdel(bot_id..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+redis:setex(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_,300,msg.text)
 return sendMsg(msg.chat_id_,msg.id_,"📜¦ جيد , يمكنك الان ارسال جواب الرد \n🔛¦ [[ نص,صوره,فيديو,متحركه,بصمه,اغنيه ]] ✓\n-")
 end
 end
 
-if redis:get(boss..'delrd:'..msg.sender_user_id_) then
-redis:del(boss..'delrd:'..msg.sender_user_id_)
-local names 	= redis:hget(boss..'replay:'..msg.chat_id_,msg.text)
-local photo 	= redis:hget(boss..'replay_photo:group:'..msg.chat_id_,msg.text)
-local voice 	= redis:hget(boss..'replay_voice:group:'..msg.chat_id_,msg.text)
-local animation = redis:hget(boss..'replay_animation:group:'..msg.chat_id_,msg.text)
-local audio 	= redis:hget(boss..'replay_audio:group:'..msg.chat_id_,msg.text)
-local sticker 	= redis:hget(boss..'replay_sticker:group:'..msg.chat_id_,msg.text)
-local video 	= redis:hget(boss..'replay_video:group:'..msg.chat_id_,msg.text)
+if redis:get(bot_id..'delrd:'..msg.sender_user_id_) then
+redis:del(bot_id..'delrd:'..msg.sender_user_id_)
+local names 	= redis:hget(bot_id..'replay:'..msg.chat_id_,msg.text)
+local photo 	= redis:hget(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+local voice 	= redis:hget(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+local animation = redis:hget(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+local audio 	= redis:hget(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+local sticker 	= redis:hget(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+local video 	= redis:hget(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
 if not (names or photo or voice or animation or audio or sticker or video) then
 return sendMsg(msg.chat_id_,msg.id_,'💬*¦* هذا الرد ليس مضاف في قائمه الردود 📛')
 else
-redis:hdel(boss..'replay:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_photo:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_voice:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_audio:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_animation:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_sticker:group:'..msg.chat_id_,msg.text)
-redis:hdel(boss..'replay_video:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
 return sendMsg(msg.chat_id_,msg.id_,'(['..msg.text..'])\n  ✓ تم مسح الرد 🚀 ')
 end 
 end
