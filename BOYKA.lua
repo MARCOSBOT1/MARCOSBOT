@@ -5516,6 +5516,158 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
+
+------------------------------------------------------------------------
+if text =="اضف رد بالصوره" and Manager(msg) then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:setex(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
+redis:del(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
+return "📭¦ حسننا , الان ارسل كلمه الرد \n-"
+end
+if text == 'مسح رد بالصوره' and Manager(msg) then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:set(boss..'delrd:'..msg.sender_user_id_,true)
+return "📭¦ حسننا عزيزي  ✋🏿\n🗯¦ الان ارسل الرد لمسحها من  للمجموعه 🍃"
+end
+
+if text == 'الردودو' then
+
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+local names  	= redis:hkeys(boss..'replay:'..msg.chat_id_)
+local photo 	= redis:hkeys(boss..'replay_photo:group:'..msg.chat_id_)
+local voice  	= redis:hkeys(boss..'replay_voice:group:'..msg.chat_id_)
+local imation 	= redis:hkeys(boss..'replay_animation:group:'..msg.chat_id_)
+local audio 	= redis:hkeys(boss..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:hkeys(boss..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:hkeys(boss..'replay_video:group:'..msg.chat_id_)
+if #names==0 and #photo==0 and #voice==0 and #imation==0 and #audio==0 and #sticker==0 and #video==0 then 
+return '🚸*¦* لا يوجد ردود مضافه حاليا \n❕' 
+end
+local ii = 1
+local message = '💬*¦* ردود البوت في المجموعه  :\n\n'
+for i=1, #photo 	do message = message ..ii..' - *{* '..	photo[i]..' *}_*( صوره 🏞 ) \n' 	 ii = ii + 1 end
+for i=1, #names 	do message = message ..ii..' - *{* '..	names[i]..' *}_*( نص 🗯 ) \n'  	 ii = ii + 1 end
+for i=1, #voice 	do message = message ..ii..' - *{* '..  voice[i]..' *}_*( بصمه 🎙 ) \n' 	 ii = ii + 1 end
+for i=1, #imation 	do message = message ..ii..' - *{* '..imation[i]..' *}_*( متحركه 🎭 ) \n' ii = ii + 1 end
+for i=1, #audio 	do message = message ..ii..' - *{* '..	audio[i]..' *}_*( صوتيه 🔊 ) \n'  ii = ii + 1 end
+for i=1, #sticker 	do message = message ..ii..' - *{* '..sticker[i]..' *}_*( ملصق 🗺 ) \n' 	 ii = ii + 1 end
+for i=1, #video 	do message = message ..ii..' - *{* '..	video[i]..' *}_*( فيديو  🎞 ) \n' ii = ii + 1 end
+message = message..'\n➖➖➖'
+if utf8.len(message) > 4096 then
+return "📛| لا يمكن عرض الردود بسبب القائمه كبيره جدا ."
+else
+return message
+end
+end
+
+if text == 'مسح الردودو' and Manager(msg) then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+local names 	= redis:exists(boss..'replay:'..msg.chat_id_)
+local photo 	= redis:exists(boss..'replay_photo:group:'..msg.chat_id_)
+local voice 	= redis:exists(boss..'replay_voice:group:'..msg.chat_id_)
+local imation   = redis:exists(boss..'replay_animation:group:'..msg.chat_id_)
+local audio	 	= redis:exists(boss..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:exists(boss..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:exists(boss..'replay_video:group:'..msg.chat_id_)
+if names or photo or voice or imation or audio or sticker or video then
+redis:del(boss..'replay:'..msg.chat_id_,boss..'replay_photo:group:'..msg.chat_id_,boss..'replay_voice:group:'..msg.chat_id_,
+boss..'replay_animation:group:'..msg.chat_id_,boss..'replay_audio:group:'..msg.chat_id_,boss..'replay_sticker:group:'..msg.chat_id_,boss..'replay_video:group:'..msg.chat_id_)
+return "✓ تم مسح كل الردود 🚀"
+else
+return '🚸*¦* لا يوجد ردود ليتم مسحها \n❕'
+end
+end
+
+
+--====================== Reply Only Group =====================================
+if redis:get(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_) and redis:get(boss..'replay1'..msg.chat_id_..msg.sender_user_id_) then
+local klma = redis:get(boss..'replay1'..msg.chat_id_..msg.sender_user_id_)
+if msg.content_ and msg.content_.caption_ then redis:hset(boss..':caption_replay:'..msg.chat_id_,klma,msg.content_.caption_) end
+if msg.text then 
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+if utf8.len(msg.text) > 550 then 
+return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه جواب الرد باكثر من 550 حرف تم الغاء الامر\n❕")
+end
+redis:hset(boss..'replay:'..msg.chat_id_,klma,Flter_Markdown(msg.text))
+return sendMsg(msg.chat_id_,msg.id_,'(['..klma..'])\n  ✓ تم اضافت الرد 🚀 \n-')
+elseif msg.content_.ID == "MessagePhoto" then
+if msg.content_.photo_.sizes_[3] then 
+photo_id = msg.content_.photo_.sizes_[3].photo_.persistent_id_
+else 
+photo_id = msg.content_.photo_.sizes_[0].photo_.persistent_id_
+end
+redis:hset(boss..'replay_photo:group:'..msg.chat_id_,klma,photo_id)
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه صوره للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوره الاتيه .')
+elseif msg.content_.ID == "MessageVoice" then
+redis:hset(boss..'replay_voice:group:'..msg.chat_id_,klma,msg.content_.voice_.voice_.persistent_id_)
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه بصمه صوت للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لسماع البصمه الاتيه .')
+elseif msg.content_.ID == "MessageAnimation" then
+redis:hset(boss..'replay_animation:group:'..msg.chat_id_,klma,msg.content_.animation_.animation_.persistent_id_)
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه متحركه للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوره الاتيه .')
+elseif msg.content_.ID == "MessageVideo" then
+redis:hset(boss..'replay_video:group:'..msg.chat_id_,klma,msg.content_.video_.video_.persistent_id_)
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه فيديو للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الفيديو الاتي .')
+elseif msg.content_.ID == "MessageAudio" then
+redis:hset(boss..'replay_audio:group:'..msg.chat_id_,klma,msg.content_.audio_.audio_.persistent_id_)
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه للصوت للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوت الاتي .')
+elseif msg.content_.ID == "MessageSticker" then
+redis:hset(boss..'replay_sticker:group:'..msg.chat_id_,klma,msg.content_.sticker_.sticker_.persistent_id_)
+redis:del(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه ملصق للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الملصق الاتي .')
+end  
+
+end
+
+if not msg.GroupActive then return false end
+if msg.text then
+
+if redis:get(boss..'addrd:'..msg.chat_id_..msg.sender_user_id_) then -- استقبال الرد للمجموعه فقط
+
+if not redis:get(boss..'replay1'..msg.chat_id_..msg.sender_user_id_) then  -- كلمه الرد
+if utf8.len(msg.text) > 25 then 
+return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه كلمه الرد باكثر من 25 حرف \n❕")
+end
+redis:hdel(boss..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_video:group:'..msg.chat_id_,msg.text)
+redis:setex(boss..'replay1'..msg.chat_id_..msg.sender_user_id_,300,msg.text)
+return sendMsg(msg.chat_id_,msg.id_,"📜¦ جيد , يمكنك الان ارسال جواب الرد \n🔛¦ [[ نص,صوره,فيديو,متحركه,بصمه,اغنيه ]] ✓\n-")
+end
+end
+
+if redis:get(boss..'delrd:'..msg.sender_user_id_) then
+redis:del(boss..'delrd:'..msg.sender_user_id_)
+local names 	= redis:hget(boss..'replay:'..msg.chat_id_,msg.text)
+local photo 	= redis:hget(boss..'replay_photo:group:'..msg.chat_id_,msg.text)
+local voice 	= redis:hget(boss..'replay_voice:group:'..msg.chat_id_,msg.text)
+local animation = redis:hget(boss..'replay_animation:group:'..msg.chat_id_,msg.text)
+local audio 	= redis:hget(boss..'replay_audio:group:'..msg.chat_id_,msg.text)
+local sticker 	= redis:hget(boss..'replay_sticker:group:'..msg.chat_id_,msg.text)
+local video 	= redis:hget(boss..'replay_video:group:'..msg.chat_id_,msg.text)
+if not (names or photo or voice or animation or audio or sticker or video) then
+return sendMsg(msg.chat_id_,msg.id_,'💬*¦* هذا الرد ليس مضاف في قائمه الردود 📛')
+else
+redis:hdel(boss..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(boss..'replay_video:group:'..msg.chat_id_,msg.text)
+return sendMsg(msg.chat_id_,msg.id_,'(['..msg.text..'])\n  ✓ تم مسح الرد 🚀 ')
+end 
+end
+
+end
 ------------------------------------------------------------------------
 if text and text:match("^تقيد @(.*)$") and Mod(msg) then
 local username = text:match("^تقيد @(.*)$")
@@ -7716,7 +7868,7 @@ database:del(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
-database:del(bot_id..'List:Manager'..msg.chat_id_,msg.text)
+database:del(bot_id..'List:Manager'..msg.chat_id_)
 end
 send(msg.chat_id_, msg.id_,"📌| تم مسح ردود المدير")
 end
@@ -7753,13 +7905,13 @@ if text or msg.content_MessageSticker_ or msg.content_MessageVoice_ or msg.conte
 local test = database:get(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_..'')
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
 database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
-if msg.content_MessageSticker_ then   
+if msg.content_.Sticker_ then   
 database:set(bot_id.."Add:Rd:Manager:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
-if msg.content_MessageVoice_ then  
+if msg.content_.Voice_ then  
 database:set(bot_id.."Add:Rd:Manager:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
 end   
-if msg.content_MessageAnimation_ then   
+if msg.content_.Animation_ then   
 database:set(bot_id.."Add:Rd:Manager:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
@@ -7769,16 +7921,16 @@ text = text:gsub('`','')
 text = text:gsub('*','') 
 database:set(bot_id.."Add:Rd:Manager:Text"..test..msg.chat_id_, text)  
 end  
-if msg.content_MessageAudio_ then
+if msg.content_.Audio_ then
 database:set(bot_id.."Add:Rd:Manager:Audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
 end
-if msg.content_MessageDocument_ then
+if msg.content_.Document_ then
 database:set(bot_id.."Add:Rd:Manager:File"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
 end
-if msg.content_MessageVideo_ then
+if msg.content_.Video_ then
 database:set(bot_id.."Add:Rd:Manager:Video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
 end
-if msg.content_MessagePhoto_ then
+if msg.content_.Photo_ then
 if msg.content_.photo_.sizes_[0] then
 photo_in_group = msg.content_.photo_.sizes_[0].photo_.persistent_id_
 end
@@ -7802,29 +7954,29 @@ if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_
 send(msg.chat_id_, msg.id_,'📥| ارسل الرد الذي تريده سواء كان {صوره,فيديو,متحركه,ملصق,بصمه,صوت}')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
 database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_,msg.text)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_,msg.text)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_,msg.text)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_,msg.text)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_,msg.text)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_,msg.text)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_,msg.text)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
 database:sadd(bot_id..'List:Manager'..msg.chat_id_..'', text)
 return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
 send(msg.chat_id_, msg.id_,'📌| تم ازالة الرد ')
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_,msg.text)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_,msg.text)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_,msg.text)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_,msg.text)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_,msg.text)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_,msg.text)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_,msg.text)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_,msg.text)
-database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,msg.text)
+database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
 database:srem(bot_id..'List:Manager'..msg.chat_id_..'', text)
 return false
 end
@@ -7860,14 +8012,14 @@ end
 -----------
 if text and not database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
-local anemi = database:get(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_,msg.text)   
-local veico = database:get(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_,msg.text)   
-local stekr = database:get(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_,msg.text)     
-local text1 = database:get(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_,msg.text)   
-local photo = database:get(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_,msg.text)
-local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_,msg.text)
-local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_,msg.text)
-local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_,msg.text)
+local anemi = database:get(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
+local veico = database:get(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
+local stekr = database:get(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
+local text1 = database:get(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
+local photo = database:get(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
+local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
+local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
+local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 if text1 then 
