@@ -7720,12 +7720,12 @@ database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
 database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
 database:del(bot_id..'List:Manager'..msg.chat_id_)
 end
-send(msg.chat_id_, msg.id_,"⌯︙تم مسح ردود المدير")
+send(msg.chat_id_, msg.id_,"🚸︙تم مسح ردود المدير")
 end
 
 if text == ("ردود المدير") and Manager(msg) then
 local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
-text = "⌯︙قائمه ردود المدير \n… … … … … … … … … … …\n"
+text = "🚸︙قائمه ردود المدير \n… … … … … … … … … … …\n"
 for k,v in pairs(list) do
 if database:get(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_) then
 db = 'متحركه'
@@ -7747,7 +7747,7 @@ end
 text = text..""..k..">> ("..v..") » {"..db.."}\n"
 end
 if #list == 0 then
-text = "⌯︙لا يوجد ردود للمدير"
+text = "🚸︙لا يوجد ردود للمدير"
 end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
@@ -7795,13 +7795,13 @@ photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
 database:set(bot_id.."Add:Rd:Manager:Photo"..test..msg.chat_id_, photo_in_group)  
 end
-send(msg.chat_id_, msg.id_,'⌯︙تم حفظ الرد')
+send(msg.chat_id_, msg.id_,'🚸︙تم حفظ الرد')
 return false  
 end  
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,'⌯︙ارسل الرد الذي تريد اضافته')
+send(msg.chat_id_, msg.id_,'🚸︙ارسل الرد الذي تريد اضافته')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
 database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
 database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
@@ -7817,7 +7817,7 @@ return false end
 end
 if text and text:match("^(.*)$") then
 if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
-send(msg.chat_id_, msg.id_,'⌯︙تم ازالة الرد ')
+send(msg.chat_id_, msg.id_,'🚸︙تم ازالة الرد ')
 database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
 database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
 database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
@@ -7837,11 +7837,11 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,'⌯︙لا تستطيع استخدام البوت \n ⌯︙يرجى الاشتراك بالقناه اولا \n ⌯︙اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,'🔖︙لا تستطيع استخدام البوت \n 🔖︙يرجى الاشتراك بالقناه اولا \n 🔖︙اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,'⌯︙ارسل الكلمه التي تريد اضافتها')
+send(msg.chat_id_, msg.id_,'🚸︙ارسل الكلمه التي تريد اضافتها')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
@@ -7851,11 +7851,11 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,'⌯︙لا تستطيع استخدام البوت \n ⌯︙يرجى الاشتراك بالقناه اولا \n ⌯︙اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,'🔖︙لا تستطيع استخدام البوت \n 🔖︙يرجى الاشتراك بالقناه اولا \n 🔖︙اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
-send(msg.chat_id_, msg.id_,'⌯︙ارسل الكلمه التي تريد حذفها')
+send(msg.chat_id_, msg.id_,'🚸︙ارسل الكلمه التي تريد حذفها')
 database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
 return false 
 end
@@ -7870,6 +7870,157 @@ local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
 local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
 local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
 ------------------------------------------------------------------------
+if text =="اضف رد بالصوره" and Manager(msg) then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:setex(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
+redis:del(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_)
+return "📭¦ حسننا , الان ارسل كلمه الرد \n-"
+end
+if text == 'مسح رد بالصوره' and Manager(msg) then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:set(bot_id..'delrd:'..msg.sender_user_id_,true)
+return "📭¦ حسننا عزيزي  ✋🏿\n🗯¦ الان ارسل الرد لمسحها من  للمجموعه 🍃"
+end
+
+if text == 'الردودو' then
+
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+local names  	= redis:hkeys(bot_id..'replay:'..msg.chat_id_)
+local photo 	= redis:hkeys(bot_id..'replay_photo:group:'..msg.chat_id_)
+local voice  	= redis:hkeys(bot_id..'replay_voice:group:'..msg.chat_id_)
+local imation 	= redis:hkeys(bot_id..'replay_animation:group:'..msg.chat_id_)
+local audio 	= redis:hkeys(bot_id..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:hkeys(bot_id..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:hkeys(bot_id..'replay_video:group:'..msg.chat_id_)
+if #names==0 and #photo==0 and #voice==0 and #imation==0 and #audio==0 and #sticker==0 and #video==0 then 
+return '🚸*¦* لا يوجد ردود مضافه حاليا \n❕' 
+end
+local ii = 1
+local message = '💬*¦* ردود البوت في المجموعه  :\n\n'
+for i=1, #photo 	do message = message ..ii..' - *{* '..	photo[i]..' *}_*( صوره 🏞 ) \n' 	 ii = ii + 1 end
+for i=1, #names 	do message = message ..ii..' - *{* '..	names[i]..' *}_*( نص 🗯 ) \n'  	 ii = ii + 1 end
+for i=1, #voice 	do message = message ..ii..' - *{* '..  voice[i]..' *}_*( بصمه 🎙 ) \n' 	 ii = ii + 1 end
+for i=1, #imation 	do message = message ..ii..' - *{* '..imation[i]..' *}_*( متحركه 🎭 ) \n' ii = ii + 1 end
+for i=1, #audio 	do message = message ..ii..' - *{* '..	audio[i]..' *}_*( صوتيه 🔊 ) \n'  ii = ii + 1 end
+for i=1, #sticker 	do message = message ..ii..' - *{* '..sticker[i]..' *}_*( ملصق 🗺 ) \n' 	 ii = ii + 1 end
+for i=1, #video 	do message = message ..ii..' - *{* '..	video[i]..' *}_*( فيديو  🎞 ) \n' ii = ii + 1 end
+message = message..'\n➖➖➖'
+if utf8.len(message) > 4096 then
+return "📛| لا يمكن عرض الردود بسبب القائمه كبيره جدا ."
+else
+return message
+end
+end
+
+if text == 'مسح الردودو' and Manager(msg) then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+local names 	= redis:exists(bot_id..'replay:'..msg.chat_id_)
+local photo 	= redis:exists(bot_id..'replay_photo:group:'..msg.chat_id_)
+local voice 	= redis:exists(bot_id..'replay_voice:group:'..msg.chat_id_)
+local imation   = redis:exists(bot_id..'replay_animation:group:'..msg.chat_id_)
+local audio	 	= redis:exists(bot_id..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:exists(bot_id..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:exists(bot_id..'replay_video:group:'..msg.chat_id_)
+if names or photo or voice or imation or audio or sticker or video then
+redis:del(bot_id..'replay:'..msg.chat_id_,bot_id..'replay_photo:group:'..msg.chat_id_,bot_id..'replay_voice:group:'..msg.chat_id_,
+bot_id..'replay_animation:group:'..msg.chat_id_,bot_id..'replay_audio:group:'..msg.chat_id_,bot_id..'replay_sticker:group:'..msg.chat_id_,bot_id..'replay_video:group:'..msg.chat_id_)
+return "✓ تم مسح كل الردود 🚀"
+else
+return '🚸*¦* لا يوجد ردود ليتم مسحها \n❕'
+end
+end
+
+
+--====================== Reply Only Group =====================================
+if redis:get(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_) and redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_) then
+local klma = redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_)
+if msg.content_ and msg.content_.caption_ then redis:hset(bot_id..':caption_replay:'..msg.chat_id_,klma,msg.content_.caption_) end
+if msg.text then 
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+if utf8.len(msg.text) > 550 then 
+return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه جواب الرد باكثر من 550 حرف تم الغاء الامر\n❕")
+end
+redis:hset(bot_id..'replay:'..msg.chat_id_,klma,Flter_Markdown(msg.text))
+return sendMsg(msg.chat_id_,msg.id_,'(['..klma..'])\n  ✓ تم اضافت الرد 🚀 \n-')
+elseif msg.content_.ID == "MessagePhoto" then
+if msg.content_.photo_.sizes_[3] then 
+photo_id = msg.content_.photo_.sizes_[3].photo_.persistent_id_
+else 
+photo_id = msg.content_.photo_.sizes_[0].photo_.persistent_id_
+end
+redis:hset(bot_id..'replay_photo:group:'..msg.chat_id_,klma,photo_id)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه صوره للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوره الاتيه .')
+elseif msg.content_.ID == "MessageVoice" then
+redis:hset(bot_id..'replay_voice:group:'..msg.chat_id_,klma,msg.content_.voice_.voice_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه بصمه صوت للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لسماع البصمه الاتيه .')
+elseif msg.content_.ID == "MessageAnimation" then
+redis:hset(bot_id..'replay_animation:group:'..msg.chat_id_,klma,msg.content_.animation_.animation_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه متحركه للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوره الاتيه .')
+elseif msg.content_.ID == "MessageVideo" then
+redis:hset(bot_id..'replay_video:group:'..msg.chat_id_,klma,msg.content_.video_.video_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه فيديو للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الفيديو الاتي .')
+elseif msg.content_.ID == "MessageAudio" then
+redis:hset(bot_id..'replay_audio:group:'..msg.chat_id_,klma,msg.content_.audio_.audio_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه للصوت للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الصوت الاتي .')
+elseif msg.content_.ID == "MessageSticker" then
+redis:hset(bot_id..'replay_sticker:group:'..msg.chat_id_,klma,msg.content_.sticker_.sticker_.persistent_id_)
+redis:del(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_)
+return sendMsg(msg.chat_id_,msg.id_,'🗂¦ تم اضافه ملصق للرد بنجاح ✓\n🗂¦ يمكنك ارسال (['..klma..']) لاضهار الملصق الاتي .')
+end  
+
+end
+
+if not msg.GroupActive then return false end
+if msg.text then
+
+if redis:get(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_) then -- استقبال الرد للمجموعه فقط
+
+if not redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_) then  -- كلمه الرد
+if utf8.len(msg.text) > 25 then 
+return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه كلمه الرد باكثر من 25 حرف \n❕")
+end
+redis:hdel(bot_id..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+redis:setex(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_,300,msg.text)
+return sendMsg(msg.chat_id_,msg.id_,"📜¦ جيد , يمكنك الان ارسال جواب الرد \n🔛¦ [[ نص,صوره,فيديو,متحركه,بصمه,اغنيه ]] ✓\n-")
+end
+end
+
+if redis:get(bot_id..'delrd:'..msg.sender_user_id_) then
+redis:del(bot_id..'delrd:'..msg.sender_user_id_)
+local names 	= redis:hget(bot_id..'replay:'..msg.chat_id_,msg.text)
+local photo 	= redis:hget(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+local voice 	= redis:hget(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+local animation = redis:hget(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+local audio 	= redis:hget(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+local sticker 	= redis:hget(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+local video 	= redis:hget(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+if not (names or photo or voice or animation or audio or sticker or video) then
+return sendMsg(msg.chat_id_,msg.id_,'💬*¦* هذا الرد ليس مضاف في قائمه الردود 📛')
+else
+redis:hdel(bot_id..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+return sendMsg(msg.chat_id_,msg.id_,'(['..msg.text..'])\n  ✓ تم مسح الرد 🚀 ')
+end 
+end
+
+end
+
 ------------------------------------------------------------------------
 if text1 then 
 send(msg.chat_id_, msg.id_, text1)
@@ -9571,6 +9722,214 @@ database:set(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_)
 return false
 end
 end
+--------------------------------------------------------------------------------------------------------------
+if MsgText[1]== 'مسح' and MsgText[2]== 'رددد' then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:set(bot_id..'delrd:'..msg.sender_user_id_,true)
+return "📭¦ حسننا عزيزي  ✋🏿\n🗯¦ الان ارسل الرد لمسحها من  للمجموعه 🍃"
+end
+
+if MsgText[1]== 'الردوددد' then
+
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+local names  	= redis:hkeys(bot_id..'replay:'..msg.chat_id_)
+local photo 	= redis:hkeys(bot_id..'replay_photo:group:'..msg.chat_id_)
+local voice  	= redis:hkeys(bot_id..'replay_voice:group:'..msg.chat_id_)
+local imation 	= redis:hkeys(bot_id..'replay_animation:group:'..msg.chat_id_)
+local audio 	= redis:hkeys(bot_id..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:hkeys(bot_id..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:hkeys(bot_id..'replay_video:group:'..msg.chat_id_)
+if #names==0 and #photo==0 and #voice==0 and #imation==0 and #audio==0 and #sticker==0 and #video==0 then 
+return '🚸*¦* لا يوجد ردود مضافه حاليا \n❕' 
+end
+local ii = 1
+local message = '💬*¦* ردود البوت في المجموعه  :\n\n'
+for i=1, #photo 	do message = message ..ii..' - *{* '..	photo[i]..' *}_*( صوره 🏞 ) \n' 	 ii = ii + 1 end
+for i=1, #names 	do message = message ..ii..' - *{* '..	names[i]..' *}_*( نص 🗯 ) \n'  	 ii = ii + 1 end
+for i=1, #voice 	do message = message ..ii..' - *{* '..  voice[i]..' *}_*( بصمه 🎙 ) \n' 	 ii = ii + 1 end
+for i=1, #imation 	do message = message ..ii..' - *{* '..imation[i]..' *}_*( متحركه 🎭 ) \n' ii = ii + 1 end
+for i=1, #audio 	do message = message ..ii..' - *{* '..	audio[i]..' *}_*( صوتيه 🔊 ) \n'  ii = ii + 1 end
+for i=1, #sticker 	do message = message ..ii..' - *{* '..sticker[i]..' *}_*( ملصق 🗺 ) \n' 	 ii = ii + 1 end
+for i=1, #video 	do message = message ..ii..' - *{* '..	video[i]..' *}_*( فيديو  🎞 ) \n' ii = ii + 1 end
+message = message..'\n➖➖➖'
+if utf8.len(message) > 4096 then
+return "📛| لا يمكن عرض الردود بسبب القائمه كبيره جدا ."
+else
+return message
+end
+end
+
+if MsgText[1]== 'مسح' and MsgText[2]== 'الردوددد' then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+local names 	= redis:exists(bot_id..'replay:'..msg.chat_id_)
+local photo 	= redis:exists(bot_id..'replay_photo:group:'..msg.chat_id_)
+local voice 	= redis:exists(bot_id..'replay_voice:group:'..msg.chat_id_)
+local imation   = redis:exists(bot_id..'replay_animation:group:'..msg.chat_id_)
+local audio	 	= redis:exists(bot_id..'replay_audio:group:'..msg.chat_id_)
+local sticker 	= redis:exists(bot_id..'replay_sticker:group:'..msg.chat_id_)
+local video 	= redis:exists(bot_id..'replay_video:group:'..msg.chat_id_)
+if names or photo or voice or imation or audio or sticker or video then
+redis:del(bot_id..'replay:'..msg.chat_id_,bot_id..'replay_photo:group:'..msg.chat_id_,bot_id..'replay_voice:group:'..msg.chat_id_,
+bot_id..'replay_animation:group:'..msg.chat_id_,bot_id..'replay_audio:group:'..msg.chat_id_,bot_id..'replay_sticker:group:'..msg.chat_id_,bot_id..'replay_video:group:'..msg.chat_id_)
+return "✓ تم مسح كل الردود 🚀"
+else
+return '🚸*¦* لا يوجد ردود ليتم مسحها \n❕'
+end
+end
+
+if MsgText[1]=="اضف رددد" and msg.GroupActive then
+if not msg.Director then return "📛*¦* هذا الامر يخص {المطور,المنشئ,المدير} فقط  \n🚶" end
+redis:setex(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_,300,true) 
+redis:del(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_)
+return "📭¦ حسننا , الان ارسل كلمه الرد \n-"
+end
+
+if not msg.GroupActive then return false end
+if msg.text then
+
+if redis:get(bot_id..'addrd:'..msg.chat_id_..msg.sender_user_id_) then -- استقبال الرد للمجموعه فقط
+
+if not redis:get(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_) then  -- كلمه الرد
+if utf8.len(msg.text) > 25 then 
+return sendMsg(msg.chat_id_,msg.id_,"📛¦ عذرا غير مسموح باضافه كلمه الرد باكثر من 25 حرف \n❕")
+end
+redis:hdel(bot_id..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+redis:setex(bot_id..'replay1'..msg.chat_id_..msg.sender_user_id_,300,msg.text)
+return sendMsg(msg.chat_id_,msg.id_,"📜¦ جيد , يمكنك الان ارسال جواب الرد \n🔛¦ [[ نص,صوره,فيديو,متحركه,بصمه,اغنيه ]] ✓\n-")
+end
+end
+
+if redis:get(bot_id..'delrd:'..msg.sender_user_id_) then
+redis:del(bot_id..'delrd:'..msg.sender_user_id_)
+local names 	= redis:hget(bot_id..'replay:'..msg.chat_id_,msg.text)
+local photo 	= redis:hget(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+local voice 	= redis:hget(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+local animation = redis:hget(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+local audio 	= redis:hget(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+local sticker 	= redis:hget(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+local video 	= redis:hget(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+if not (names or photo or voice or animation or audio or sticker or video) then
+return sendMsg(msg.chat_id_,msg.id_,'💬*¦* هذا الرد ليس مضاف في قائمه الردود 📛')
+else
+redis:hdel(bot_id..'replay:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+redis:hdel(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+return sendMsg(msg.chat_id_,msg.id_,'(['..msg.text..'])\n  ✓ تم مسح الرد 🚀 ')
+end 
+end
+
+end
+------------------------------{ Start Replay Send }------------------------
+
+if msg.text and redis:get(bot_id..'replay'..msg.chat_id_) then
+
+local Replay = false
+
+Replay = redis:hget(bot_id..'replay:all',msg.text)
+if Replay then
+sendMsg(msg.chat_id_,msg.id_,Replay)
+return false
+end
+
+Replay = redis:hget(bot_id..'replay:'..msg.chat_id_,msg.text)
+if Replay then 
+ sendMsg(msg.chat_id_,msg.id_,Replay) 
+return false
+end
+Replay = redis:hget(bot_id..'replay_photo:group:',msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendPhoto(msg.chat_id_,msg.id_,Replay,Caption)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_voice:group:',msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendVoice(msg.chat_id_,msg.id_,Replay,Caption)
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_animation:group:',msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendAnimation(msg.chat_id_,msg.id_,Replay,Caption)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_audio:group:',msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendAudio(msg.chat_id_,msg.id_,Replay,"",Caption)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_sticker:group:',msg.text)
+if Replay then 
+sendSticker(msg.chat_id_,msg.id_,Replay)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_video:group:',msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendVideo(msg.chat_id_,msg.id_,Replay,Caption)
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_photo:group:'..msg.chat_id_,msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendPhoto(msg.chat_id_,msg.id_,Replay,Caption)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_voice:group:'..msg.chat_id_,msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendVoice(msg.chat_id_,msg.id_,Replay,Caption)
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_animation:group:'..msg.chat_id_,msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendAnimation(msg.chat_id_,msg.id_,Replay,Caption)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_audio:group:'..msg.chat_id_,msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendAudio(msg.chat_id_,msg.id_,Replay,"",Caption)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_sticker:group:'..msg.chat_id_,msg.text)
+if Replay then 
+sendSticker(msg.chat_id_,msg.id_,Replay)  
+return false
+end
+
+Replay = redis:hget(bot_id..'replay_video:group:'..msg.chat_id_,msg.text)
+if Replay then 
+Caption = redis:hget(bot_id..':caption_replay:'..msg.chat_id_,msg.text)
+sendVideo(msg.chat_id_,msg.id_,Replay,Caption)
+return false
+end
+
+if not Replay then
+--------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 local Getredis = database:get(bot_id.."Chen:Photo"..msg.sender_user_id_)
 if data.profile_photo_ then  
