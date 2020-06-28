@@ -9721,7 +9721,7 @@ send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
 database:set(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
 return false
 end
-
+end
 --------------------------------------------------------------------------------------------------------------
 local Getredis = database:get(bot_id.."Chen:Photo"..msg.sender_user_id_)
 if data.profile_photo_ then  
