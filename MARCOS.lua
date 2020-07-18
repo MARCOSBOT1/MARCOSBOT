@@ -37,13 +37,13 @@ end
 os.execute('lua MARCOS.lua')
 end
 if not database:get(id_server..":SUDO:USERNAME") then
-io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
+io.write('\27[1;36m ↓ ارسل معرف المطور الاساسي :h┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \27[0;33;49m')
 local SUDOUSERNAME = io.read():gsub('@','')
 if SUDOUSERNAME ~= '' then
-io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
+io.write('\n\27[1;36m تم حفظ معرف المطور :\n\27[0;33;49m')
 database:set(id_server..":SUDO:USERNAME",'@'..SUDOUSERNAME)
 else
-print('\n\27[1;34m لم يتم حفظ معرف المطور :')
+print('\n\27[1;31m لم يتم حفظ معرف المطور :')
 end 
 os.execute('lua MARCOS.lua')
 end
@@ -662,6 +662,43 @@ else
 Chat_Type = 'GroupBot' 
 end
 end
+if database:get(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
+if text == "الغاء" or text == "الغاء ✖" then   
+send(msg.chat_id_, msg.id_,"📫┇تم الغاء الاذاعه") 
+database:del(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
+return false
+end 
+local list = database:smembers(bot_id.."Chek:Groups") 
+if msg.content_.text_ then
+for k,v in pairs(list) do 
+send(v, 0,"["..msg.content_.text_.."]")  
+database:set(bot_id..'Msg:Pin:Chat'..v,msg.content_.text_) 
+end
+elseif msg.content_.photo_ then
+if msg.content_.photo_.sizes_[0] then
+photo = msg.content_.photo_.sizes_[0].photo_.persistent_id_
+elseif msg.content_.photo_.sizes_[1] then
+photo = msg.content_.photo_.sizes_[1].photo_.persistent_id_
+end
+for k,v in pairs(list) do 
+sendPhoto(v, 0, photo,(msg.content_.caption_ or ""))
+database:set(bot_id..'Msg:Pin:Chat'..v,photo) 
+end 
+elseif msg.content_.animation_ then
+for k,v in pairs(list) do 
+sendDocument(v, 0, msg.content_.animation_.animation_.persistent_id_,(msg.content_.caption_ or "")) 
+database:set(bot_id..'Msg:Pin:Chat'..v,msg.content_.animation_.animation_.persistent_id_)
+end 
+elseif msg.content_.sticker_ then
+for k,v in pairs(list) do 
+sendSticker(v, 0, msg.content_.sticker_.sticker_.persistent_id_)   
+database:set(bot_id..'Msg:Pin:Chat'..v,msg.content_.sticker_.sticker_.persistent_id_) 
+end 
+end
+send(msg.chat_id_, msg.id_,"📮┇تمت الاذاعه الى *~ "..#list.." ~* مجموعه ")     
+database:del(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
+return false
+end
 --------------------------------------------------------------------------------------------------------------
 if Chat_Type == 'UserBot' then
 if text == '/start' then  
@@ -684,6 +721,7 @@ local keyboard = {
 {'اذاعه 👥','اذاعه خاص 🗣️','معلومات الكيبورت 💬'},
 {'تغير رساله الاشتراك','حذف رساله الاشتراك 🚫','تغير الاشتراك'},
 {'اذاعه بالتوجيه 🔖','اذاعه بالتوجيه خاص 📯'},
+{'اذاعه بالتثبيت'},
 {'تفعيل الاشتراك الاجباري 📥','تعطيل الاشتراك الاجباري 📤'},
 {'الاشتراك الاجباري 🚸','تفعيل الاشتراك الاول🌟'},
 {'تفعيل البوت الخدمي 🔓','تعطيل البوت الخدمي🔏'},
@@ -930,6 +968,11 @@ end
 if text=="اذاعه بالتوجيه خاص 📯" and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 database:setex(bot_id.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"📥| ارسل لي التوجيه الان") 
+return false
+end 
+if text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+database:setex(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+send(msg.chat_id_, msg.id_,"🔘┇ارسل لي سواء ~ { ملصق, متحركه, صوره, رساله }\n📫┇للخروج ارسل الغاء ") 
 return false
 end 
 if text == 'جلب نسخه احتياطيه 📂' and SudoBot(msg) then 
@@ -2734,7 +2777,7 @@ end,nil)
 elseif text == 'فتح السيلفي' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 database:del(bot_id.."lock:Unsupported"..msg.chat_id_)  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n🔘| تـم فتح السيلفي ')  
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'THE_M3RK')..') \n??| تـم فتح السيلفي ')  
 end,nil)   
 end
 if text == 'قفل الماركداون' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
@@ -6476,6 +6519,19 @@ database:del(bot_id.."Link_Group:status"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"📌| تم تعطيل الرابط") 
 return false end
 end
+if text == "تفعيل صورتي" or text == 'تفعيل الصوره' then
+if BasicConstructor(msg) then  
+database:set(bot_id.."my_photo:status"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_,"📌┇ تم تفعيل الصوره") 
+return false  
+end
+end
+if text == "تعطيل الصوره" or text == 'تعطيل صورتي' then
+if BasicConstructor(msg) then  
+database:del(bot_id.."my_photo:status"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_,"📌┇ تم تعطيل الصوره") 
+return false end
+end
 if text == "الرابط" then 
 local status_Link = database:get(bot_id.."Link_Group:status"..msg.chat_id_)
 if not status_Link then
@@ -6946,6 +7002,26 @@ send(msg.chat_id_,msg.id_, Set_Rules)
 else      
 send(msg.chat_id_, msg.id_,"💠| لا توجد قوانين هنا")   
 end    
+end
+if text == 'قفل التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id..'lock:tagrvrbot'..msg.chat_id_,true)   
+list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Fars","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
+for i,lock in pairs(list) do 
+database:set(bot_id..lock..msg.chat_id_,'del')    
+end
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| العضو ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'sajad13p')..') \n🔘| تـم قفـل التفليش\n🚸| الحاله ← المسح ')  
+end,nil)   
+end
+if text == 'فتح التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:del(bot_id..'lock:tagrvrbot'..msg.chat_id_)   
+list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Fars","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
+for i,lock in pairs(list) do 
+database:del(bot_id..lock..msg.chat_id_)    
+end
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| العضو ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'sajad13p')..') \n🔘| تـم فـتح التفليش\n🚸| الحاله ← المسح ')  
+end,nil)   
 end
 if text == 'طرد المحذوفين' or text == 'مسح المحذوفين' then  
 if Mod(msg) then    
@@ -8278,6 +8354,13 @@ Text = '\n💠| بالتاكيد تم تعطيل امر صيح'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
+if text == 'تنزيل جميع الرتب' and BasicConstructor(msg) then  
+database:del(bot_id..'Constructor'..msg.chat_id_)
+database:del(bot_id..'Manager'..msg.chat_id_)
+database:del(bot_id..'Mod:User'..msg.chat_id_)
+database:del(bot_id..'Special:User'..msg.chat_id_)
+send(msg.chat_id_, msg.id_, '\n🔰| تم تنزيل الكل من الرتب الاتيه \n♻️| المميزين ، الادمنيه ، المدراء ، المنشئين \n')
+end
 if text == 'تفعيل اطردني' and Manager(msg) then   
 if database:get(bot_id..'Cick:Me'..msg.chat_id_) then
 Text = '🔰| تم تفعيل امر اطردني'
@@ -8295,6 +8378,20 @@ else
 Text = '\n⚠️| بالتاكيد تم تعطيل امر اطردني'
 end
 send(msg.chat_id_, msg.id_,Text) 
+end
+if text == "صورتي"  then
+local my_ph = database:get(bot_id.."my_photo:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"📛┇ الصوره معطله") 
+return false  
+end
+local function getpro(extra, result, success)
+if result.photos_[0] then
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"🎇┇ عدد صورك   ←  "..result.total_count_.." صوره‌‏ ✨", msg.id_, msg.id_, "md")
+else
+send(msg.chat_id_, msg.id_,'لا تمتلك صوره في حسابك', 'md')
+  end end
+tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil)
 end
 if text == ("ايدي") and msg.reply_to_message_id_ == 0 and not database:get(bot_id..'Bot:Id'..msg.chat_id_) then      
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
