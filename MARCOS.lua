@@ -7010,19 +7010,6 @@ tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dat
 send(msg.chat_id_, msg.id_,'👤| العضو ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'sajad13p')..') \n🔘| تـم فـتح التفليش\n🚸| الحاله ← المسح ')  
 end,nil)   
 end
-if text == "تفعيل صورتي" or text == 'تفعيل الصوره' then
-if BasicConstructor(msg) then  
-database:set(bot_id.."my_photo:status"..msg.chat_id_,true) 
-send(msg.chat_id_, msg.id_,"📌┇ تم تفعيل الصوره") 
-return false  
-end
-end
-if text == "تعطيل الصوره" or text == 'تعطيل صورتي' then
-if BasicConstructor(msg) then  
-database:del(bot_id.."my_photo:status"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_,"📌┇ تم تعطيل الصوره") 
-return false end
-end
 if text == 'طرد المحذوفين' or text == 'مسح المحذوفين' then  
 if Mod(msg) then    
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),offset_ = 0,limit_ = 1000}, function(arg,del)
@@ -8380,11 +8367,6 @@ end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text == "صورتي"  then
-local my_ph = database:get(bot_id.."my_photo:status"..msg.chat_id_)
-if not my_ph then
-send(msg.chat_id_, msg.id_,"📛┇ الصوره معطله") 
-return false  
-end
 local function getpro(extra, result, success)
 if result.photos_[0] then
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"🎇┇ عدد صورك   ←  "..result.total_count_.." صوره‌‏ ✨", msg.id_, msg.id_, "md")
