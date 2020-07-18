@@ -6519,19 +6519,6 @@ database:del(bot_id.."Link_Group:status"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"📌| تم تعطيل الرابط") 
 return false end
 end
-if text == "تفعيل صورتي" or text == 'تفعيل الصوره' then
-if BasicConstructor(msg) then  
-database:set(bot_id.."my_photo:status"..msg.chat_id_,true) 
-send(msg.chat_id_, msg.id_,"📌┇ تم تفعيل الصوره") 
-return false  
-end
-end
-if text == "تعطيل الصوره" or text == 'تعطيل صورتي' then
-if BasicConstructor(msg) then  
-database:del(bot_id.."my_photo:status"..msg.chat_id_) 
-send(msg.chat_id_, msg.id_,"📌┇ تم تعطيل الصوره") 
-return false end
-end
 if text == "الرابط" then 
 local status_Link = database:get(bot_id.."Link_Group:status"..msg.chat_id_)
 if not status_Link then
@@ -7022,6 +7009,19 @@ end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| العضو ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'sajad13p')..') \n🔘| تـم فـتح التفليش\n🚸| الحاله ← المسح ')  
 end,nil)   
+end
+if text == "تفعيل صورتي" or text == 'تفعيل الصوره' then
+if BasicConstructor(msg) then  
+database:set(bot_id.."my_photo:status"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_,"📌┇ تم تفعيل الصوره") 
+return false  
+end
+end
+if text == "تعطيل الصوره" or text == 'تعطيل صورتي' then
+if BasicConstructor(msg) then  
+database:del(bot_id.."my_photo:status"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_,"📌┇ تم تعطيل الصوره") 
+return false end
 end
 if text == 'طرد المحذوفين' or text == 'مسح المحذوفين' then  
 if Mod(msg) then    
