@@ -21,18 +21,18 @@ file:write(serialized)
 file:close()  
 end  
 if not database:get(id_server..":token") then
-io.write('\27[1;35m\n ارسل لي توكن البوت الان ↓ :\n\27[0;33;49m')
+io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\27')
 local token = io.read()
 if token ~= '' then
 local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
 if res ~= 200 then
-print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n التوكن غير صحيح تاكد منه ثم ارسله')
+print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
-io.write('\27[1;36m تم حفظ التوكن بنجاح \n27[0;39;49m')
+io.write('\27[0;31m تم حفظ التوكن بنجاح \na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n27[0;39;49m')
 database:set(id_server..":token",token)
 end 
 else
-print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ التوكن ارسل لي التوكن الان')
+print('\27[0;35m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ التوكن ارسل لي التوكن الان')
 end 
 os.execute('lua MARCOS.lua')
 end
@@ -47,14 +47,30 @@ print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم �
 end 
 os.execute('lua MARCOS.lua')
 end
+if not database:get(id_server..":SUDO:USERNAME") then
+io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
+local SUDOUSERNAME = io.read():gsub('@','')
+if SUDOUSERNAME ~= '' then
+io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
+database:set(id_server..":SUDO:USERNAME",'@'..SUDOUSERNAME)
+else
+print('\n\27[1;34m لم يتم حفظ معرف المطور :')
+end 
+os.execute('lua MARCOS.lua')
+end
 local create_config_auto = function()
 config = {
 token = database:get(id_server..":token"),
-UserName = database:get(id_server..":SUDO:ID"),
+SUDO = database:get(id_server..":SUDO:ID"),
+UserName = database:get(id_server..":SUDO:USERNAME"),
  }
 create(config, "./Info.lua")   
 end 
 create_config_auto()
+token = database:get(id_server..":token")
+SUDO = database:get(id_server..":SUDO:ID")
+install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
+print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
 file = io.open("MARCOS", "w")  
 file:write([[
 #!/usr/bin/env bash
@@ -6519,6 +6535,19 @@ database:del(bot_id.."Link_Group:status"..msg.chat_id_)
 send(msg.chat_id_, msg.id_,"📌| تم تعطيل الرابط") 
 return false end
 end
+if text == "تفعيل صورتي" or text == 'تفعيل الصوره' then
+if BasicConstructor(msg) then  
+database:set(bot_id.."my_photo:status"..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_,"📌┇ تم تفعيل الصوره") 
+return false  
+end
+end
+if text == "تعطيل الصوره" or text == 'تعطيل صورتي' then
+if BasicConstructor(msg) then  
+database:del(bot_id.."my_photo:status"..msg.chat_id_) 
+send(msg.chat_id_, msg.id_,"📌┇ تم تعطيل الصوره") 
+return false end
+end
 if text == "الرابط" then 
 local status_Link = database:get(bot_id.."Link_Group:status"..msg.chat_id_)
 if not status_Link then
@@ -8367,6 +8396,11 @@ end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text == "صورتي"  then
+local my_ph = database:get(bot_id.."my_photo:status"..msg.chat_id_)
+if not my_ph then
+send(msg.chat_id_, msg.id_,"📛┇ الصوره معطله") 
+return false  
+end
 local function getpro(extra, result, success)
 if result.photos_[0] then
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"🎇┇ عدد صورك   ←  "..result.total_count_.." صوره‌‏ ✨", msg.id_, msg.id_, "md")
