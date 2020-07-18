@@ -36,17 +36,6 @@ print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يت�
 end 
 os.execute('lua MARCOS.lua')
 end
-if not database:get(id_server..":SUDO:ID") then
-io.write('\27[1;35m\n ارسل لي ايدي المطور الاساسي ↓ :\n\27[0;33;49m')
-local SUDOID = io.read()
-if SUDOID ~= '' then
-io.write('\27[1;36m تم حفظ ايدي المطور الاساسي \n27[0;39;49m')
-database:set(id_server..":SUDO:ID",SUDOID)
-else
-print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
-end 
-os.execute('lua MARCOS.lua')
-end
 if not database:get(id_server..":SUDO:USERNAME") then
 io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
 local SUDOUSERNAME = io.read():gsub('@','')
@@ -61,7 +50,6 @@ end
 local create_config_auto = function()
 config = {
 token = database:get(id_server..":token"),
-SUDO = database:get(id_server..":SUDO:ID"),
 UserName = database:get(id_server..":SUDO:USERNAME"),
  }
 create(config, "./Info.lua")   
@@ -125,7 +113,7 @@ AutoSet()
 else   
 f:close()  
 database:del(id_server..":token")
-database:del(id_server..":SUDO:ID")
+database:del(id_server..":SUDO:USERNAME")
 end  
 local config = loadfile("./Info.lua")() 
 return config 
