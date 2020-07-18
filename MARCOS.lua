@@ -113,7 +113,7 @@ AutoSet()
 else   
 f:close()  
 database:del(id_server..":token")
-database:del(id_server..":SUDO:USERNAME")
+database:del(id_server..":SUDO:ID")
 end  
 local config = loadfile("./Info.lua")() 
 return config 
