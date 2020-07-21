@@ -3141,7 +3141,7 @@ end
 end
 send(msg.chat_id_, msg.id_,t)
 end
-if text == "متجر الملفات" or text == 'المتجر' then
+if text == "" or text == '' then
 if SudoBot(msg) then
 local Get_Files, res = https.request("https://raw.githubusercontent.com/MARCOSBOT1/Files_MARCOS/master/getfile.json")
 if res == 200 then
@@ -3191,15 +3191,15 @@ send(msg.chat_id_, msg.id_,"⌯┇ عذرا هاذا ملف ليس من ملفا
 end
 return false
 end
-if text and text:match("^(تفعيل) (.*)(.lua)$") and SudoBot(msg) then
-local name_t = {string.match(text, "^(تفعيل) (.*)(.lua)$")}
+if text and text:match("^(تحديث) (.*)(.lua)$") and SudoBot(msg) then
+local name_t = {string.match(text, "^(تحديث) (.*)(.lua)$")}
 local file = name_t[2]..'.lua'
 local file_bot = io.open("File_Bot/"..file,"r")
 if file_bot then
 io.close(file_bot)
-t = "⌯┇ بالتاكيد تم تفعيل ملف → "..file.." \n"
+t = "⌯┇ بالتاكيد تم تحديث ملف → "..file.." \n"
 else
-t = "⌯┇ الملف ← "..file.."\n⌯┇ تم تفعيل ملف \n"
+t = "⌯┇ الملف ← "..file.."\n⌯┇ تم تحديث ملف \n"
 end
 local json_file, res = https.request("https://raw.githubusercontent.com/MARCOSBOT1/Files_MARCOS/master/File_Bot/"..file)
 if res == 200 then
@@ -9492,12 +9492,6 @@ Text = [[
 ⦿┇ الغاء العام
 ⦿┇ قائمه العام
 ⦿┇ مسح قائمه العام
-ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
- ⦿┇ المتجر 
-⦿┇ متجر الملفات
-⦿┇ الملفات
-⦿┇ مسح الملفات
-⦿┇ تعطيل + تفعيل + اسم ملف
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
 ⦿┇ اذاعه خاص
 ⦿┇ اذاعه
