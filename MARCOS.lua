@@ -8662,6 +8662,7 @@ else
 username = 'لا يوجد '
 end
 local iduser = msg.sender_user_id_
+local nspt = string.sub(nspatfa, 1,5)%
 local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..msg.sender_user_id_) or 0)
 local photps = (taha.total_count_ or 0)
 local interaction = Total_Msg(Msguser)
@@ -8694,7 +8695,7 @@ get_id_text = get_id_text:gsub('#stast',rtp)
 get_id_text = get_id_text:gsub('#auto',interaction) 
 get_id_text = get_id_text:gsub('#game',NUMPGAME) 
 get_id_text = get_id_text:gsub('#photos',photps) 
-get_id_text = get_id_text:gsub('#nesbt',nspatfa)
+get_id_text = get_id_text:gsub('#nsbtfa',nspt)
 get_id_text = get_id_text:gsub('#name',nummsggp)  
 get_id_text = get_id_text:gsub('#conii',Contact) 
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then   
