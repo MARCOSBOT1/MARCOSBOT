@@ -8389,7 +8389,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..result.sender_
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'⌯️┇ ايديه »(`'..iduser..'`)\n🎭┇ معرفه »('..username..')\n⌯┇ رتبته »('..rtp..')\n✏┇ تعديلاته »('..edit..')\n🗳️┇ النقود »('..NUMPGAME..')\n⌯┇ جهاته »('..Contact..')\n📨┇ رسائله »('..Msguser..')')
+send(msg.chat_id_, msg.id_,'🎟┇ ايديه »(`'..iduser..'`)\n🎭┇ معرفه »('..username..')\n⚜️┇ رتبته »('..rtp..')\n✏┇ تعديلاته »('..edit..')\n🗳️┇ النقود »('..NUMPGAME..')\n📟┇ جهاته »('..Contact..')\n📨┇ رسائله »('..Msguser..')')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -8406,7 +8406,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..result.id_) or
 local rtp = Rutba(result.id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,'⌯️┇ ايديه »(`'..iduser..'`)\n🎭┇ معرفه »('..username..')\n⌯┇ رتبته »('..rtp..')\n✏┇ تعديلاته »('..edit..')\n🗳️┇ النقود »('..NUMPGAME..')\n⌯┇ جهاته »('..Contact..')\n📨┇ رسائله »('..Msguser..')')
+send(msg.chat_id_, msg.id_,'🎟┇ ايديه »(`'..iduser..'`)\n🎭┇ معرفه »('..username..')\n⚜️┇ رتبته »('..rtp..')\n✏┇ تعديلاته »('..edit..')\n🗳️┇ النقود »('..NUMPGAME..')\n📟┇ جهاته »('..Contact..')\n📨┇ رسائله »('..Msguser..')')
 end,nil)
 else
 send(msg.chat_id_, msg.id_,'⌯┇ المعرف غير صحيح ')
@@ -8442,7 +8442,7 @@ tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(extr
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'⌯️┇ الايدي » ('..iduser..')\n⌯┇ المعرف » ('..username..')\n👮‍♂️┇ الرتبه » ('..rtp..')\n⌯┇ نوع الكشف » بالرد')
+send(msg.chat_id_, msg.id_,'🎟┇ الايدي » ('..iduser..')\n💌┇ المعرف » ('..username..')\n👮‍♂️┇ الرتبه » ('..rtp..')\n🎗┇ نوع الكشف » بالرد')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -8456,7 +8456,7 @@ tdcli_function ({ID = "GetUser",user_id_ = result.id_},function(extra,data)
 local rtp = Rutba(result.id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,'⌯┇ الايدي » ('..iduser..')\n⌯┇ المعرف » ('..username..')\n👮‍♂️┇ الرتبه » ('..rtp..')\n⌯┇ نوع الكشف » بالمعرف')
+send(msg.chat_id_, msg.id_,'🎟┇ الايدي » ('..iduser..')\n💌┇ المعرف » ('..username..')\n👮‍♂️┇ الرتبه » ('..rtp..')\n🎗┇ نوع الكشف » بالمعرف')
 end,nil)
 else
 send(msg.chat_id_, msg.id_,'⌯┇ المعرف غير صحيح ')
@@ -8471,11 +8471,11 @@ return false
 end 
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,ta) 
 tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(arg,data) 
-local taha = '⌯┇ عدد الادمنيه : '..data.administrator_count_..
-'\n\n⌯┇ عدد المطرودين : '..data.kicked_count_..
-'\n\n⌯┇ عدد الاعضاء : '..data.member_count_..
+local taha = '👨‍👨‍👦‍👦┇ عدد الادمنيه : '..data.administrator_count_..
+'\n\n🚫┇ عدد المطرودين : '..data.kicked_count_..
+'\n\n👨‍🦰┇ عدد الاعضاء : '..data.member_count_..
 '\n\n💌┇ عدد رسائل الكروب : '..(msg.id_/2097152/0.5)..
-'\n\n⌯┇ اسم المجموعه : ['..ta.title_..']'
+'\n\n💯┇ اسم المجموعه : ['..ta.title_..']'
 send(msg.chat_id_, msg.id_, taha) 
 end,nil)
 end,nil)
@@ -8694,13 +8694,16 @@ get_id_text = get_id_text:gsub('#stast',rtp)
 get_id_text = get_id_text:gsub('#auto',interaction) 
 get_id_text = get_id_text:gsub('#game',NUMPGAME) 
 get_id_text = get_id_text:gsub('#photos',photps) 
+get_id_text = get_id_text:gsub('#nesbt',nspatfa)
+get_id_text = get_id_text:gsub('#name',nummsggp)  
+get_id_text = get_id_text:gsub('#conii',Contact) 
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then   
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, taha.photos_[0].sizes_[1].photo_.persistent_id_,get_id_text)       
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
 else
-send(msg.chat_id_, msg.id_, '\n⌯┇ ليس لديك صور في حسابك \n['..get_id_text..']')      
+send(msg.chat_id_, msg.id_, '\n⛲┇ ليس لديك صور في حسابك \n['..get_id_text..']')      
 end 
 end
 else
@@ -8710,12 +8713,12 @@ else
 username = 'لا يوجد '
 end
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, taha.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n⌯️┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n⌯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n⌯┇ رتبتك بالكروب←'..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك← '..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..'\n')   
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, taha.photos_[0].sizes_[1].photo_.persistent_id_,''..rdphoto..'\n🎟┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n📯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n💬┇ رتبتك بالكروب←'..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك← '..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..'\n')   
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
-send(msg.chat_id_, msg.id_,'[\n⌯┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n⌯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n⌯┇ رتبتك بالكروب← '..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك←'..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..']\n')   
+send(msg.chat_id_, msg.id_,'[\n🎟┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n📯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n💬┇ رتبتك بالكروب← '..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك←'..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..']\n')   
 else
-send(msg.chat_id_, msg.id_, '\n⌯┇ الصوره ←  ليس لديك صور في حسابك 🍃'..'[\n⌯┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n⌯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n⌯┇ رتبتك بالكروب← '..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك←'..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..']\n')   
+send(msg.chat_id_, msg.id_, '\n🌈┇ الصوره ←  ليس لديك صور في حسابك 🍃'..'[\n🎟┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n📯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n💬┇ رتبتك بالكروب← '..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك←'..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..']\n')   
 end 
 end
 end
@@ -8733,7 +8736,7 @@ get_id_text = get_id_text:gsub('#game',NUMPGAME)
 get_id_text = get_id_text:gsub('#photos',photps) 
 send(msg.chat_id_, msg.id_,'['..get_id_text..']')   
 else
-send(msg.chat_id_, msg.id_,'[\n⌯️┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n⌯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n⌯┇ رتبتك بالكروب← '..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك←'..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..']\n')   
+send(msg.chat_id_, msg.id_,'[\n🎟┇ ايديك←'..msg.sender_user_id_..'\n🎭┇ معرفك←'..username..'\n📯┇ رتبتك بالبوت←'..Rutba(msg.sender_user_id_,msg.chat_id_)..'\n💬┇ رتبتك بالكروب← '..rtpa..'\n🎲┇ تفاعلك←'..Total_Msg(Msguser)..'\n💌┇ رسائلك←'..Msguser..'\n✏️┇ نسبه تفاعلك←'..string.sub(nspatfa, 1,5)..' %\n📧┇ السحكات←'..edit..'\n💰┇ نقودك←'..NUMPGAME..']\n')   
 end
 end
 
