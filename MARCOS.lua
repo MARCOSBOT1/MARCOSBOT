@@ -9718,7 +9718,7 @@ return false
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if text == "تحبني" or text == "احبك"  then  
-local lovr = {
+local RAADLOVE = {
 "\nاكرهك 😒👌🏿",
 "\nدي 😑👊🏾",
 "\nاعشكك/ج مح 😍💋",
@@ -9728,7 +9728,7 @@ local lovr = {
 "\nاذا كتلك/ج احبك/ج شراح تستفاد/ين 😕❤️",
 "\nولي ماحبك/ج 🙊💔",
 }
-send(msg.chat_id_, msg.id_,'['..lovr[math.random(#lovr)]..']') 
+send(msg.chat_id_, msg.id_,'['..RAADLOVE[math.random(#RAADLOVE)]..']') 
 return false
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -9947,9 +9947,17 @@ local taha ={
 '\n شكو غيرت صورتك شسالفه ؟؟ 🤔🌞'
 }
 send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-database:set(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
+end
+end
+if text == 'تفعيل تغير الصورة' and Manager(msg) then
+database:del(bot_id..'Chen:Photo'..msg.chat_id_)
+send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل تغير الصورة')
 return false
 end
+if text == 'تعطيل تغير الصورة' and Manager(msg) then
+database:set(bot_id..'Chen:Photo'..msg.chat_id_,true)
+send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل ردود البوت')
+return false
 end
 end,nil)   
 end
