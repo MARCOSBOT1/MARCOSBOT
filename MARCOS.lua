@@ -9951,11 +9951,12 @@ end
 end
 if text == 'تفعيل تغير الصورة' and Manager(msg) then
 database:del(bot_id..'Chen:Photo'..msg.chat_id_)
+database:del(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
 send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل تغير الصورة')
 return false
 end
 if text == 'تعطيل تغير الصورة' and Manager(msg) then
-database:set(bot_id..'Chen:Photo'..msg.chat_id_,true)
+database:set(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
 send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل ردود البوت')
 return false
 end
