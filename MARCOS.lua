@@ -9913,7 +9913,6 @@ local taha ={
 '\n شكو غيرت اسمك شسالفه ؟؟ 🤔🌞'
 }
 send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-
 return false
 end  
 end
