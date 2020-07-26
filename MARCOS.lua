@@ -9917,7 +9917,7 @@ return false
 end  
 end
 if text == 'تعطيل تغير الاسم' and Manager(msg) then
-database:del(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
+database:del(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_,true) 
 send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الاسم')
 return false
 end
@@ -9944,7 +9944,7 @@ return false
 end
 end
 if text == 'تعطيل تغير المعرف' and Manager(msg) then
-database:del(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
+database:del(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_,true) 
 send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير المعرف')
 return false
 end
@@ -9968,7 +9968,7 @@ send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
 end
 end
 if text == 'تعطيل تغير الصوره' and Manager(msg) then
-database:del(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
+database:del(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_,true) 
 send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الصورة')
 return false
 end
