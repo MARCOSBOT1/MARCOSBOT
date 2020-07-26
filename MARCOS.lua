@@ -9903,7 +9903,7 @@ if Get_Re_Name then
 if Get_Re_Name ~= data.first_name_ then 
 tahan = '['..(Get_Re_Name or '')..']'
 taham = '['..data.first_name_..']'
-local tahar ={ 
+local taha ={ 
 '\n شكو غيرت اسمك  يا حلو 😹🌚',
 '\n شهل اسم الفيطي '..taham.. ' \n رجعه ؏ قديم \n '..tahan..'',
 '\n  ها ها شو غيرت اسمك 🤔😹',
@@ -9912,26 +9912,17 @@ local tahar ={
 '\n ها ولك مو جان  اسمك   '..tahan..'  شكو غيرته ',
 '\n شكو غيرت اسمك شسالفه ؟؟ 🤔🌞'
 }
-send(msg.chat_id_,msg.id_,tahar[math.random(#tahar)])
+send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
+database:set(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
 return false
 end  
-end
-if text == 'تعطيل تغير الاسم' and Manager(msg) then
-database:del(bot_id.."Cheame"..msg.sender_user_id_, data.first_name_,true) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الاسم')
-return false
-end
-if text == 'تفعيل تغير الاسم' and Manager(msg) then
-database:set(bot_id.."Cheme"..msg.sender_user_id_, data.first_name_) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل التعليق على تغيير الاسم')
-return false
 end
 --------------------------------------------------------------------------------------------------------------
 local Getredis = database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_)
 if data.username_ then  
 if Getredis and Getredis ~= data.username_ then 
 tahan = '['..(database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_) or '')..']'
-local tahax ={ 
+local taha ={ 
 '\n شكو غيرت معرفك  يا حلو 😹🌚',
 '\n  ها ها شو غيرت معرفك 🤔😹',
 '\n شكو غيرت معرفك شنو قطيت وحده جديده 😹😹🌚',
@@ -9939,43 +9930,26 @@ local tahax ={
 '\n ها ولك مو جان  معرفك   '..tahan..'  شكو غيرته ',
 '\n شكو غيرت معرفك شسالفه ؟؟ 🤔🌞'
 }
-send(msg.chat_id_,msg.id_,tahax[math.random(#tahax)])
-return false
-end
-end
-if text == 'تعطيل تغير المعرف' and Manager(msg) then
-database:del(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_,true) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير المعرف')
-return false
-end
-if text == 'تفعيل تغير المعرف' and Manager(msg) then
+send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
 database:set(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل التعليق على تغيير المعرف')
 return false
+end
 end
 --------------------------------------------------------------------------------------------------------------
 local Getredis = database:get(bot_id.."Chen:Photo"..msg.sender_user_id_)
 if data.profile_photo_ then  
 if Getredis and Getredis ~= data.profile_photo_.id_ then 
-local taham ={ 
+local taha ={ 
 '\n شكو غيرت صورتك  يا حلو 😹🌚',
 '\n  ها ها شو غيرت صورتك 🤔😹',
 '\n شكو غيرت صورتك شنو قطيت وحده جديده 😹😹🌚',
 '\n شو غيرت صورتك شنو تعاركت ويه الحب ؟😹🌞',
 '\n شكو غيرت صورتك شسالفه ؟؟ 🤔🌞'
 }
-send(msg.chat_id_,msg.id_,taham[math.random(#taham)])
-end
-end
-if text == 'تعطيل تغير الصوره' and Manager(msg) then
-database:del(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_,true) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الصورة')
-return false
-end
-if text == 'تفعيل تغير الصوره' and Manager(msg) then
+send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
 database:set(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل التعليق على تغيير الصورة')
 return false
+end
 end
 end,nil)   
 end
