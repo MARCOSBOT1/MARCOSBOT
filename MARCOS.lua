@@ -9913,9 +9913,19 @@ local taha ={
 '\n شكو غيرت اسمك شسالفه ؟؟ 🤔🌞'
 }
 send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-database:set(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
+
 return false
 end  
+end
+if text == 'تعطيل تغير الاسم' and Manager(msg) then
+database:del(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
+send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الاسم)
+return false
+end
+if text == 'تفعيل تغير الاسم' and Manager(msg) then
+database:set(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
+send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل التعليق على تغيير الاسم')
+return false
 end
 --------------------------------------------------------------------------------------------------------------
 local Getredis = database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_)
@@ -9931,9 +9941,18 @@ local taha ={
 '\n شكو غيرت معرفك شسالفه ؟؟ 🤔🌞'
 }
 send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-database:set(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
 return false
 end
+end
+if text == 'تعطيل تغير المعرف' and Manager(msg) then
+database:del(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
+send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير المعرف')
+return false
+end
+if text == 'تفعيل تغير المعرف' and Manager(msg) then
+database:set(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
+send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل التعليق على تغيير المعرف')
+return false
 end
 --------------------------------------------------------------------------------------------------------------
 local Getredis = database:get(bot_id.."Chen:Photo"..msg.sender_user_id_)
@@ -9949,15 +9968,14 @@ local taha ={
 send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
 end
 end
-if text == 'تفعيل تغير الصورة' and Manager(msg) then
-database:del(bot_id..'Chen:Photo'..msg.chat_id_)
+if text == 'تعطيل تغير الصوره' and Manager(msg) then
 database:del(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل تغير الصورة')
+send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الصورة')
 return false
 end
-if text == 'تعطيل تغير الصورة' and Manager(msg) then
+if text == 'تفعيل تغير الصوره' and Manager(msg) then
 database:set(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل ردود البوت')
+send(msg.chat_id_, msg.id_,'⌯︙ تم تفعيل التعليق على تغيير الصورة')
 return false
 end
 end,nil)   
