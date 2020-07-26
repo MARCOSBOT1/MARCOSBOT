@@ -9903,7 +9903,7 @@ if Get_Re_Name then
 if Get_Re_Name ~= data.first_name_ then 
 tahan = '['..(Get_Re_Name or '')..']'
 taham = '['..data.first_name_..']'
-local taha ={ 
+local tahar ={ 
 '\n شكو غيرت اسمك  يا حلو 😹🌚',
 '\n شهل اسم الفيطي '..taham.. ' \n رجعه ؏ قديم \n '..tahan..'',
 '\n  ها ها شو غيرت اسمك 🤔😹',
@@ -9912,7 +9912,7 @@ local taha ={
 '\n ها ولك مو جان  اسمك   '..tahan..'  شكو غيرته ',
 '\n شكو غيرت اسمك شسالفه ؟؟ 🤔🌞'
 }
-send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
+send(msg.chat_id_,msg.id_,tahar[math.random(#tahar)])
 return false
 end  
 end
@@ -9931,7 +9931,7 @@ local Getredis = database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_)
 if data.username_ then  
 if Getredis and Getredis ~= data.username_ then 
 tahan = '['..(database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_) or '')..']'
-local taha ={ 
+local tahax ={ 
 '\n شكو غيرت معرفك  يا حلو 😹🌚',
 '\n  ها ها شو غيرت معرفك 🤔😹',
 '\n شكو غيرت معرفك شنو قطيت وحده جديده 😹😹🌚',
@@ -9939,7 +9939,7 @@ local taha ={
 '\n ها ولك مو جان  معرفك   '..tahan..'  شكو غيرته ',
 '\n شكو غيرت معرفك شسالفه ؟؟ 🤔🌞'
 }
-send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
+send(msg.chat_id_,msg.id_,tahax[math.random(#tahax)])
 return false
 end
 end
@@ -9957,14 +9957,14 @@ end
 local Getredis = database:get(bot_id.."Chen:Photo"..msg.sender_user_id_)
 if data.profile_photo_ then  
 if Getredis and Getredis ~= data.profile_photo_.id_ then 
-local taha ={ 
+local taham ={ 
 '\n شكو غيرت صورتك  يا حلو 😹🌚',
 '\n  ها ها شو غيرت صورتك 🤔😹',
 '\n شكو غيرت صورتك شنو قطيت وحده جديده 😹😹🌚',
 '\n شو غيرت صورتك شنو تعاركت ويه الحب ؟😹🌞',
 '\n شكو غيرت صورتك شسالفه ؟؟ 🤔🌞'
 }
-send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
+send(msg.chat_id_,msg.id_,taham[math.random(#taham)])
 end
 end
 if text == 'تعطيل تغير الصوره' and Manager(msg) then
