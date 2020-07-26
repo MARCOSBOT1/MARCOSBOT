@@ -9919,7 +9919,7 @@ end
 end
 if text == 'تعطيل تغير الاسم' and Manager(msg) then
 database:del(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
-send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الاسم)
+send(msg.chat_id_, msg.id_,'⌯︙ تم تعطيل التعليق على تغيير الاسم')
 return false
 end
 if text == 'تفعيل تغير الاسم' and Manager(msg) then
