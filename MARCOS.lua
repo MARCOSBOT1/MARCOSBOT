@@ -264,7 +264,7 @@ function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(689087834) then  
 var = 'مطور السورس👨‍🔧'
 elseif tonumber(user_id) == tonumber(1220231877) then
-var = 'مطورالسورس🙍‍♂️'
+var = 'مطور السورس👨‍🔧'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي👨‍💻'  
 elseif tonumber(user_id) == tonumber(bot_id) then  
