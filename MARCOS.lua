@@ -177,7 +177,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,689087834}
+sudo_users = {SUDO,689087834,1220231877}
 function SudoBot(msg)  
 local MARCOS = false  
 for k,v in pairs(sudo_users) do  
@@ -238,6 +238,8 @@ end
 function Can_or_NotCan(user_id,chat_id)
 if tonumber(user_id) == tonumber(689087834) then  
 var = true  
+elseif tonumber(user_id) == tonumber(1220231877) then
+var = true  
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = true  
 elseif database:sismember(bot_id..'Sudo:User', user_id) then
@@ -261,6 +263,8 @@ end
 function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(689087834) then  
 var = 'مطور السورس👨‍🔧'
+elseif tonumber(user_id) == tonumber(1220231877) then
+var = 'مطورالسورس🙍‍♂️'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي👨‍💻'  
 elseif tonumber(user_id) == tonumber(bot_id) then  
@@ -2155,19 +2159,19 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-♡┇ MARCOS TEAM 🦅
+ᯓ┇ 𝙈𝘼𝙍𝘾𝙊𝙎 𝙏𝙀𝘼𝙈  🦅
 … … … … … … … … … … …
-♡┇↬[Source Channel](t.me/THE_M3RK)
+ᯓ┇↬ [𝐒𝐎𝐔𝐑𝐂𝐄 𝐂𝐇𝐀𝐍𝐍𝐄𝐋](t.me/THE_M3RK)
 
-♡┇↬[Source files](t.me/THE_M2RK)
+ᯓ┇↬ [𝐒𝐎𝐔𝐑𝐂𝐄 𝐅𝐈𝐋𝐄𝐒](t.me/THE_M2RK)
 
-♡┇↬[Developer](t.me/Ra_m9)
+ᯓ┇↬ [𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑](t.me/Ra_m9)
 
-♡┇↬[Developer](t.me/DDDI2)
+ᯓ┇↬ [𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑](t.me/DDDI2)
 
-♡┇↬[The way his inauguration](https://t.me/THE_M3RK/6800)
+ᯓ┇↬ [𝐒𝐄𝐓𝐔𝐏 𝐏𝐀𝐍𝐄𝐋](https://t.me/THE_M3RK/6800)
 … … … … … … … … … … …
-♡┇↬[To contact us](t.me/Ra_m9_bot)
+ᯓ┇↬ [𝐓𝐎 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐔𝐒](t.me/Ra_m9_bot)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
