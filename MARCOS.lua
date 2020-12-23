@@ -684,7 +684,7 @@ end
 end
 if database:get(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then 
 if text == "الغاء" or text == "الغاء ⌯" then   
-send(msg.chat_id_, msg.id_,"⌯┇تم الغاء الاذاعه") 
+send(msg.chat_id_, msg.id_,"⌯┇ تم الغاء الاذاعه")
 database:del(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end 
@@ -715,7 +715,7 @@ sendSticker(v, 0, msg.content_.sticker_.sticker_.persistent_id_)
 database:set(bot_id..'Msg:Pin:Chat'..v,msg.content_.sticker_.sticker_.persistent_id_) 
 end 
 end
-send(msg.chat_id_, msg.id_,"⌯┇تمت الاذاعه الى *~ "..#list.." ~* مجموعه ")     
+send(msg.chat_id_, msg.id_,"⌯┇ تمت الاذاعه الى *~ "..#list.." ~* كروب ")
 database:del(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 return false
 end
@@ -741,7 +741,7 @@ local keyboard = {
 {'اذاعه ⌯','اذاعه خاص⌯','معلومات الكيبورت ⌯'},
 {'تغير رساله الاشتراك','حذف رساله الاشتراك ⌯','تغير الاشتراك'},
 {'اذاعه بالتوجيه ⌯','اذاعه بالتوجيه خاص ⌯'},
-{'اذاعه بالتثبيت'},
+{'اذاعه بالتثبيت ⌯'},
 {'تفعيل الاشتراك الاجباري ⌯','تعطيل الاشتراك الاجباري ⌯'},
 {'الاشتراك الاجباري ⌯','تفعيل الاشتراك الاول⌯'},
 {'تفعيل البوت الخدمي ⌯','تعطيل البوت الخدمي⌯'},
@@ -907,13 +907,19 @@ database:del(bot_id..'Srt:Bot')
 send(msg.chat_id_, msg.id_,'⌯┇ اصدار سورس ماركوس \n⌯┇ الاصدار ←{ 1.3v}') 
 end
 if text == 'معلومات السيرفر ⌯' and SudoBot(msg) then 
- local text2 = 'Info Server : \n'
-  local MARCOS1 = database:info()
-  text2 = text2..'1 - *Uptime Days* : `'..MARCOS1.server.uptime_in_days..'('..MARCOS1.server.uptime_in_seconds..' seconds)`\n'
-  text2 = text2..'2 - *Commands Processed* : `'..MARCOS1.stats.total_commands_processed..'`\n'
-  text2 = text2..'3 - *Expired Keys* : `'..MARCOS1.stats.expired_keys..'`\n'
-  text2 = text2..'4 - *Ops/sec* : `'..MARCOS1.stats.instantaneous_ops_per_sec..'`\n'
-send(msg.chat_id_, msg.id_, text2)  
+send(msg.chat_id_, msg.id_, io.popen([[
+linux_version=`lsb_release -ds`
+memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
+HardDisk=`df -lh | awk '{if ($6 == "/") { print $3"/"$2" ~ {"$5"}" }}'`
+CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
+uptime=`uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes."}'`
+echo '⇗ نظام التشغيل ⇖•\n*»» '"$linux_version"'*' 
+echo '*———————————~*\n✺✔{ الذاكره العشوائيه } ⇎\n*»» '"$memUsedPrc"'*'
+echo '*———————————~*\n✺✔{ وحـده الـتـخـزيـن } ⇎\n*»» '"$HardDisk"'*'
+echo '*———————————~*\n✺✔{ الـمــعــالــج } ⇎\n*»» '"`grep -c processor /proc/cpuinfo`""Core ~ {$CPUPer%} "'*'
+echo '*———————————~*\n✺✔{ الــدخــول } ⇎\n*»» '`whoami`'*'
+echo '*———————————~*\n✺✔{ مـده تـشغيـل الـسـيـرفـر }⇎\n*»» '"$uptime"'*'
+]]):read('*all'))  
 end
 if text == 'معلومات الكيبورت ⌯' and SudoBot(msg) then 
 database:del(bot_id..'Sart:Bot') 
@@ -980,6 +986,11 @@ database:setex(bot_id.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user
 send(msg.chat_id_, msg.id_,"⌯┇ ارسل لي سواء >> { ملصق, متحركه, صوره, رساله }\n⌯┇ للخروج ارسل الغاء ") 
 return false
 end  
+if text=="اذاعه بالتثبيت ⌯" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+database:setex(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
+send(msg.chat_id_, msg.id_,"⌯┇ارسل لي سواء ~ { ملصق, متحركه, صوره, رساله }\n⌯┇للخروج ارسل الغاء ") 
+return false
+end 
 if text=="اذاعه بالتوجيه ⌯" and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 database:setex(bot_id.."Send:Fwd:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"⌯┇ ارسل لي التوجيه الان") 
@@ -988,11 +999,6 @@ end
 if text=="اذاعه بالتوجيه خاص ⌯" and msg.reply_to_message_id_ == 0  and SudoBot(msg) then 
 database:setex(bot_id.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
 send(msg.chat_id_, msg.id_,"⌯┇ ارسل لي التوجيه الان") 
-return false
-end 
-if text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
-database:setex(bot_id.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
-send(msg.chat_id_, msg.id_,"⌯┇ارسل لي سواء ~ { ملصق, متحركه, صوره, رساله }\n⌯┇للخروج ارسل الغاء ") 
 return false
 end 
 if text == 'جلب نسخه احتياطيه ⌯' and SudoBot(msg) then 
@@ -2267,19 +2273,6 @@ database:set(bot_id.."Del:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_,'tr
 send(msg.chat_id_, msg.id_,'⌯┇ ارسل الامر الذي قمت بوضعه بدلا عن القديم')  
 return false
 end
-end
-if text and database:get(bot_id.."Del:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_) == 'true' then
-local NewCmmd = database:get(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..':'..text)
-if NewCmmd then
-database:del(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..':'..text)
-database:del(bot_id.."Set:Cmd:Group:New"..msg.chat_id_)
-database:srem(bot_id.."List:Cmd:Group:New"..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_,'⌯┇ تم حذف الامر')  
-else
-send(msg.chat_id_, msg.id_,'⌯┇ لا يوجد امر بهاذا الاسم')  
-end
-database:del(bot_id.."Del:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_)
-return false
 end
 if text and database:get(bot_id.."Set:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_) == 'true' then
 database:set(bot_id.."Set:Cmd:Group:New"..msg.chat_id_,text)
@@ -9861,6 +9854,20 @@ end
 --------------------------------------------------------------------------------------------------------------
 if text and not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
 database:del(bot_id..'Spam:Texting'..msg.sender_user_id_) 
+end
+-------------------------------------------------------------------------------------------------------------- 
+if text and database:get(bot_id.."Del:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_) == 'true' then
+local NewCmmd = database:get(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..':'..text)
+if NewCmmd then
+database:del(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..':'..text)
+database:del(bot_id.."Set:Cmd:Group:New"..msg.chat_id_)
+database:srem(bot_id.."List:Cmd:Group:New"..msg.chat_id_,text)
+send(msg.chat_id_, msg.id_,'⌯┇ تم حذف الامر')  
+else
+send(msg.chat_id_, msg.id_,'⌯┇ لا يوجد امر بهاذا الاسم')  
+end
+database:del(bot_id.."Del:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_)
+return false
 end
 -------------------------------------------------------------------------------------------------------------- 
 if text then
