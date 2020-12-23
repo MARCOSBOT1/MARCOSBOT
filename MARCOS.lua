@@ -1363,7 +1363,7 @@ end
 
 local status_welcome = database:get(bot_id..'Chek:Welcome'..msg.chat_id_)
 if status_welcome and not database:get(bot_id..'lock:tagservr'..msg.chat_id_) then
-if msg.content_.ID == "MessageChatJoinByLink" then
+if msg.content_.ID == "MessageChatJoinByLink"  or msg.content_.ID == "MessageChatAddMembers" then 
 tdcli_function({ID = "GetUser",user_id_=msg.sender_user_id_},function(extra,result) 
 local GetWelcomeGroup = database:get(bot_id..'Get:Welcome:Group'..msg.chat_id_)  
 if GetWelcomeGroup then 
@@ -1376,7 +1376,7 @@ t = t:gsub('user',('@'..result.username_ or 'لا يوجد'))
 send(msg.chat_id_, msg.id_,t)
 end,nil) 
 end 
-end 
+end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.photo_ then  
 if database:get(bot_id..'Change:Chat:Photo'..msg.chat_id_..':'..msg.sender_user_id_) then 
