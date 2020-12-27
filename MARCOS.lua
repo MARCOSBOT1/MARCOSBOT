@@ -6865,7 +6865,7 @@ local text =
 ' }\n'..'⌯┇ الايدي ← { '..idgp..
 ' }\n'..'⌯┇ الايدي بالصوره ← { '..idph..
 ' }\n'..'⌯┇ الرفع ← { '..setadd..
-' }\n'..'⌯┇ الحظر ← { '..banm..' }\n\n┉  ┉  ┉  ┉ ┉  ┉  ┉  ┉  ┉  ┉\n⌯┇ CH » [Channel MARCOS 🦅](https://t.me/THE_M3RK)\n'
+' }\n'..'⌯┇ الحظر ← { '..banm..' }\n\n┉  ┉  ┉  ┉ ┉  ┉  ┉  ┉  ┉  ┉\n⌯┇ CH » [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](https://t.me/THE_M3RK)\n'
 send(msg.chat_id_, msg.id_,text)     
 end    
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
@@ -8986,7 +8986,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..msg.sender_use
 local photps = (taha.total_count_ or 0)
 local interaction = Total_Msg(Msguser)
 local rtpg = rtpa
-local tahaa = {
+local raadid = {
 "اروح فـدوه لـحلـويـن🙊💝",
 "فديت الصاك🤗🤤",
 "فـدشـي عمـي💋💘",
@@ -8996,7 +8996,7 @@ local tahaa = {
 "فديت الحلو ☺️😚",
 "بـبكن حـلك 💞😻",
 }
-local rdphoto = tahaa[math.random(#tahaa)]
+local rdphoto = raadid[math.random(#raadid)]
 if not database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_) then      
 local get_id_text = database:get(bot_id.."KLISH:ID"..msg.chat_id_)
 if get_id_text then
@@ -9535,7 +9535,7 @@ Text = [[
 ✬┇ م7 » اوامر مطورين البوت
 ✬┇ م8 » اوامر الاعضاء
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9593,7 +9593,7 @@ Text = [[
 ✬┇ قفل ⇦ فتح الفارسيه
 ✬┇ قفل ⇦ فتح التفليش
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9640,10 +9640,10 @@ Text = [[
 ✬┇ الترحيب
 ✬┇ تفعيل/تعطيل الترحيب
 ✬┇ منع/الغاء منع
-⌯┇ قائمه المنع
-⌯┇ كشف البوتات
-⌯┇ الصلاحيات
-⌯┇ كشف / برد ⇦ بمعرف
+✬┇ قائمه المنع
+✬┇ كشف البوتات
+✬┇ الصلاحيات
+✬┇ كشف / برد ⇦ بمعرف
 ✬┇ اضف صلاحيه + اسم الصلاحيه
 ✬┇ مسح صلاحيه + اسم الصلاحيه
 ✬┇ تعطيل اوامر التحشيش
@@ -9661,7 +9661,7 @@ Text = [[
 ✬┇ رابط ، ترحيب ، قوانين
 ✬┇صوره ، وصف
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9727,7 +9727,7 @@ Text = [[
 ✬┇ تعطيل/تفعيل ضافني
 ✬┇ تعطيل / تفعيل الرابط 
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9779,7 +9779,7 @@ Text = [[
 ✬┇ تفعيل/تعطيل الحظر
 ✬┇ تفعيل/تعطيل الرفع 
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9850,7 +9850,7 @@ Text = [[
 ✬┇ تنظيف المشتركين
 ✬┇ تنظيف الكروبات
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9911,7 +9911,7 @@ Text = [[
 🐭┇ رفع + تنزيل ⇦ جريذي
 🐭┇ تاك للجريذيه / تنزيل جريذيه
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9952,7 +9952,7 @@ Text = [[
 ✬┇ مسح الاساسين ⇦ المنشئين الاساسين
 ✬┇ مسح المنشئين ⇦ المنشئين
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ 
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -9989,7 +9989,7 @@ Text = [[
 ✬┇ شنو رئيك بهاي بالرد
 ✬┇ تحب هذا
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━
-⌯┇ [Channel MARCOS 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -10038,6 +10038,55 @@ t =[[
 ]]
 send(msg.chat_id_, msg.id_,t) 
 return false
+end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if text == "تعطيل الابراج" and Manager(msg) then
+send(msg.chat_id_, msg.id_, '⌯┇تم تعطيل الابراج')
+database:set(bot_id.."MA:brj_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل الابراج" and Manager(msg) then
+send(msg.chat_id_, msg.id_,'⌯┇تم تفعيل الابراج')
+database:set(bot_id.."MA:brj_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^برج (.*)$") and database:get(bot_id.."MA:brj_Bots"..msg.chat_id_) == "open" then
+local Textbrj = text:match("^برج (.*)$")
+gk = https.request('https://forhassan.ml/Black/br.php?br='..URL.escape(Textbrj)..'')
+br = JSON.decode(gk)
+send(msg.chat_id_, msg.id_, br.ok.hso)
+end
+if text == "تعطيل حساب العمر" and Manager(msg) then
+send(msg.chat_id_, msg.id_, '⌯┇تم تعطيل حساب العمر')
+database:set(bot_id.."MA:age_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل حساب العمر" and Manager(msg) then
+send(msg.chat_id_, msg.id_,'⌯┇ تم تفعيل حساب العمر')
+database:set(bot_id.."MA:age_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^احسب (.*)$") and database:get(bot_id.."MA:age_Bots"..msg.chat_id_) == "open" then
+local Textage = text:match("^احسب (.*)$")
+ge = https.request('https://forhassan.ml/Black/age.php?age='..URL.escape(Textage)..'')
+ag = JSON.decode(ge)
+send(msg.chat_id_, msg.id_, ag.ok.hso)
+end
+if text == "تعطيل الزخرفه" and Manager(msg) then
+send(msg.chat_id_, msg.id_, '⌯┇تم تعطيل الزخرفه')
+database:set(bot_id.."MA:zhrf_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل الزخرفه" and Manager(msg) then
+send(msg.chat_id_, msg.id_,'⌯┇تم تفعيل الزخرفه')
+database:set(bot_id.."MA:zhrf_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^زخرفه (.*)$") and database:get(bot_id.."MA:zhrf_Bots"..msg.chat_id_) == "open" then
+local TextZhrfa = text:match("^زخرفه (.*)$")
+zh = https.request('https://forhassan.ml/Black/hso.php?en='..URL.escape(TextZhrfa)..'')
+zx = JSON.decode(zh)
+t = "\n⚡︙قائمه الزخرفه \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
+i = 0
+for k,v in pairs(zx.ok) do
+i = i + 1
+t = t..i.."-  "..v.." \n"
+end
+send(msg.chat_id_, msg.id_, t..'┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⚡︙[𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK) ')
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if text == "غني" or text == "غنيلي"  then  
