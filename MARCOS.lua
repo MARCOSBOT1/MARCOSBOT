@@ -2176,7 +2176,7 @@ return false
 end
 if text == "الاضافات" and Constructor(msg) then
 local Xx = database:get(bot_id.."AL:Sre:stats") or "لم يتم التحديد"
-send(msg.chat_id_, msg.id_,"✧┇ اهلا بك عزيزي 💞\n✧┇ اوامر الاضافات كتالي\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n1- كتم الاسماء \n١- كتم اسم +(اسم)\n٢-الغاء كتم اسم +(اسم)\n٣- الاسماء المكتومه\n٤- تفعيل كتم الاسم\n٥- تعطيل كتم الاسم\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n2- وضع توحيد \n١- وضع توحيد +(التوحيد)\n٢- تعين عدد الكتم+(العدد)\n٣- التوحيد\n٤- تفعيل التوحيد\n٥- تعطيل التوحيد \nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n3- تنبيه الاسماء \n ۱- تفعيل تنبيه الاسماء \n ۲- تعطيل تنبيه الاسماء\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━  \n 4- تنبيه المعرف \n ١- تفعيل تنبيه المعرف \n ۲- تعطيل تنبيه المعرف\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━  \n5- تنبيه الصور \n ۱- تفعيل تنبيه الصور \n٢- تعطيل تنبيه الصور \nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n ")
+send(msg.chat_id_, msg.id_,"✧┇ اهلا بك عزيزي 💞\n✧┇ اوامر الاضافات كتالي\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n1- كتم الاسماء \n١- كتم اسم +(اسم)\n٢-الغاء كتم اسم +(اسم)\n٣- الاسماء المكتومه\n٤- تفعيل كتم الاسم\n٥- تعطيل كتم الاسم\n٦- مسح الاسماء المكتومه\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n2- وضع توحيد \n١- وضع توحيد +(التوحيد)\n٢- تعين عدد الكتم+(العدد)\n٣- التوحيد\n٤- تفعيل التوحيد\n٥- تعطيل التوحيد \nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n3- تنبيه الاسماء \n ۱- تفعيل تنبيه الاسماء \n ۲- تعطيل تنبيه الاسماء\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━  \n 4- تنبيه المعرف \n ١- تفعيل تنبيه المعرف \n ۲- تعطيل تنبيه المعرف\nٴ━  ━ ━ ━ ━ ━ ━ ━ ━  \n5- تنبيه الصور \n ۱- تفعيل تنبيه الصور \n٢- تعطيل تنبيه الصور \nٴ━  ━ ━ ━ ━ ━ ━ ━ ━ \n ")
 end
 function bnnaGet(user_id, cb)
 tdcli_function ({
@@ -2186,13 +2186,13 @@ user_id_ = user_id
 end
 
 if database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
-if text and text:match("^كتم اسم (.*)$") and Manager(msg) and database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
+if text and text:match("^كتم اسم (.*)$") and Constructor(msg) and database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
 local BlNe = text:match("^كتم اسم (.*)$")
 send(msg.chat_id_, msg.id_, '⌯┇ تم كتم الاسم '..BlNe)
 database:sadd(bot_id.."MaRcoS:blocname"..msg.chat_id_, BlNe)
 end
 
-if text and text:match("^الغاء كتم اسم (.*)$") and Manager(msg) and database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
+if text and text:match("^الغاء كتم اسم (.*)$") and Constructor(msg) and database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
 local delBn = text:match("^الغاء كتم اسم (.*)$")
 send(msg.chat_id_, msg.id_, '⌯┇ تم الغاء كتم الاسم '..delBn)
 database:srem(bot_id.."MaRcoS:blocname"..msg.chat_id_, delBn)
@@ -2223,7 +2223,7 @@ if text == "تعطيل كتم الاسم" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل الاسماء المكتومه')
 database:set(bot_id.."block:name:stats"..msg.chat_id_,"close")
 end
-if not Manager(msg) and database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
+if not Constructor(msg) and database:get(bot_id.."block:name:stats"..msg.chat_id_) == "open" then
 function RA0AD_name(t1,t2)
 if t2.id_ then 
 name_MaRcoS = ((t2.first_name_ or "") .. (t2.last_name_ or ""))
@@ -2242,12 +2242,12 @@ end
 bnnaGet(msg.sender_user_id_, RA0AD_name)
 end
 if database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
-if text and text:match("^وضع توحيد (.*)$") and Manager(msg) and database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
+if text and text:match("^وضع توحيد (.*)$") and Constructor(msg) and database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
 local teh = text:match("^وضع توحيد (.*)$")
 send(msg.chat_id_, msg.id_,'⌯┇ تم تعيين '..teh..' كتوحيد للمجموعه')
 database:set(bot_id.."MaRcoS:teh"..msg.chat_id_,teh)
 end
-if text and text:match("^تعين عدد الكتم (.*)$") and Manager(msg) and database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
+if text and text:match("^تعين عدد الكتم (.*)$") and Constructor(msg) and database:get(bot_id.."kt:twh:stats"..msg.chat_id_) == "open" then
 local nump = text:match("^تعين عدد الكتم (.*)$")
 send(msg.chat_id_, msg.id_,'⌯┇ تم تعين  '..nump..' عدد الكتم')
 database:set(bot_id.."MaRcoS:nump"..msg.chat_id_,nump)
@@ -2288,11 +2288,11 @@ end
 bnnaGet(id, amir_MaRcoSa_new)
 end
 end
-if text == "تفعيل تنبيه الاسماء" and Manager(msg) then
+if text == "تفعيل تنبيه الاسماء" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تفعيل تنبيه الاسماء')
 database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل تنبيه الاسماء" and Manager(msg) then
+if text == "تعطيل تنبيه الاسماء" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل تنبيه الاسماء')
 database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"close")
 end
@@ -2310,9 +2310,11 @@ end
 if data.first_name_ then 
 if MaRcoSChengName ~= data.first_name_ then 
 local Text = {
-  "جان خوش اسم يول",
-"ليش غيرته اسمك بس لا خانوك/ج",
+  "جان خوش اسم يول 🐵😅",
+"ليش غيرته اسمك بس لا خانوك/ج🙊",
 "هذا الحلو غير اسمه 😉",
+"ها ولك/ج شو غيرت اسمك 😁",
+"لكفتك/ج تعال تعال ليش مغير اسمك ابو درب 😅",
 }
 send(msg.chat_id_, msg.id_,Text[math.random(#Text)])
 end  
@@ -2360,11 +2362,11 @@ end
 end
 end,nil)   
 end
-if text == "تفعيل تنبيه الصور" and Manager(msg) then
+if text == "تفعيل تنبيه الصور" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تفعيل تنبيه الصور')
 database:set(bot_id.."Ttn:Ph:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل تنبيه الصور" and Manager(msg) then
+if text == "تعطيل تنبيه الصور" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل تنبيه الصور')
 database:set(bot_id.."Ttn:Ph:stats"..msg.chat_id_,"close")
 end
@@ -2375,15 +2377,15 @@ if data.id_ ~= bot_id then
 local MaRcoSChengPhoto = database:get(bot_id.."MaRcoS:Cheng:Photo"..data.id_)
 if not data.profile_photo_ then 
 if MaRcoSChengPhoto then 
-send(msg.chat_id_, msg.id_, "حذف كل صور ابن الحلو شكد غبي لعد😂🥺")
+send(msg.chat_id_, msg.id_, "حذف كل صور ابن الحلو عود صاير حزين 🍁😂")
 database:del(bot_id.."MaRcoS:Cheng:Photo"..data.id_) 
 end
 end
 if data.profile_photo_.big_.persistent_id_ then 
 if MaRcoSChengPhoto ~= data.profile_photo_.big_.persistent_id_ then 
 local Text = {
-  "شكو غيرت صورتك يلصاك",
-  "منور طالع حلو ع صوره جديده",
+  "شكو غيرت صورتك يلصاك 🙊😥",
+  "منور طالع حلو ع صوره جديده 🙈🤭",
   "ها يول شو غيرت صورتك😍😂",
   "شكو غيرت صورتك شنو قطيت وحده جديده 😹😹🌚",
   "شو غيرت صورتك شنو تعاركت ويه الحب ؟😹🌞",
@@ -2397,6 +2399,17 @@ end
 end
 end,nil)   
 end
+if text == 'مطور السورس' or text == 'اريد مطور السورس' or text == 'منو مطور السورس' or text == 'ياهو مطور السورس'  or text == 'ابي مطور السورس'  or text == 'احتاج مطور السورس'  or text == 'محتاج مطور السورس' then
+Text = [[
+ᯓ┇ 𝙈𝘼𝙍𝘾𝙊𝙎 𝙏𝙀𝘼𝙈  🦅
+… … … … … … … … … … …
+ᯓ┇↬ [𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑 𝐒𝐎𝐔𝐑𝐂𝐄](t.me/Ra_m9)
+
+ᯓ┇↬ [𝐂𝐨𝐦𝐦𝐮𝐧𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐛𝐨𝐭](t.me/R9Dbot)
+]]
+send(msg.chat_id_, msg.id_,Text)
+return false
+end
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
 ᯓ┇ 𝙈𝘼𝙍𝘾𝙊𝙎 𝙏𝙀𝘼𝙈  🦅
@@ -2409,7 +2422,7 @@ Text = [[
 
 ᯓ┇↬ [𝐒𝐄𝐓𝐔𝐏 𝐏𝐀𝐍𝐄𝐋](https://t.me/THE_M3RK/6800)
 … … … … … … … … … … …
-ᯓ┇↬ [𝐓𝐎 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐔𝐒](t.me/Ra_m9_bot)
+ᯓ┇↬ [𝐓𝐎 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 𝐔𝐒](t.me/R9Dbot)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -9809,7 +9822,7 @@ Text = [[
 ✬┇ قفل ⇦ فتح الفارسيه
 ✬┇ قفل ⇦ فتح التفليش
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━
-⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡??𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
