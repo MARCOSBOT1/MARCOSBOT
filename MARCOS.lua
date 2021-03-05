@@ -2377,7 +2377,7 @@ if data.id_ ~= bot_id then
 local MaRcoSChengPhoto = database:get(bot_id.."MaRcoS:Cheng:Photo"..data.id_)
 if not data.profile_photo_ then 
 if MaRcoSChengPhoto then 
-send(msg.chat_id_, msg.id_, "حذف كل صور ابن الحلو عود صاير حزين 🍁😂")
+send(msg.chat_id_, msg.id_, "حذف كل صورة ابن الحلو عود صاير حزين 🍁😂")
 database:del(bot_id.."MaRcoS:Cheng:Photo"..data.id_) 
 end
 end
@@ -2403,9 +2403,9 @@ if text == 'مطور السورس' or text == 'اريد مطور السورس' o
 Text = [[
 ᯓ┇ 𝙈𝘼𝙍𝘾𝙊𝙎 𝙏𝙀𝘼𝙈  🦅
 … … … … … … … … … … …
-ᯓ┇↬ [𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑 𝐒𝐎𝐔𝐑𝐂𝐄](t.me/Ra_m9)
+ᯓ┇↬ [𝐒𝐎𝐔𝐑𝐂𝐄 𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑](t.me/Ra_m9)
 
-ᯓ┇↬ [𝐂𝐨𝐦𝐦𝐮𝐧𝐢𝐜𝐚𝐭𝐢𝐨𝐧 𝐛𝐨𝐭](t.me/R9Dbot)
+ᯓ┇↬ [𝐂𝐎𝐌𝐌𝐔𝐍𝐈𝐂𝐀𝐓𝐈𝐎𝐍 𝐁𝐎𝐓](t.me/R9Dbot)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -9822,7 +9822,7 @@ Text = [[
 ✬┇ قفل ⇦ فتح الفارسيه
 ✬┇ قفل ⇦ فتح التفليش
 ٴ━  ━ ━ ━ ━ ━ ━ ━ ━
-⚡┇ [𝐂𝐡??𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
+⚡┇ [𝐂𝐡𝐚𝐚𝐧𝐞𝐥 𝐌𝐚𝐑𝐜𝐨𝐒 🦅](t.me/THE_M3RK)
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
