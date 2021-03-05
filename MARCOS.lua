@@ -2215,11 +2215,11 @@ end
 send(msg.chat_id_, msg.id_, t)
 end
 end
-if text == "تفعيل كتم الاسم" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تفعيل كتم الاسم" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم التفعيل الاسماء المكتومه')
 database:set(bot_id.."block:name:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل كتم الاسم" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تعطيل كتم الاسم" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل الاسماء المكتومه')
 database:set(bot_id.."block:name:stats"..msg.chat_id_,"close")
 end
@@ -2258,11 +2258,11 @@ local s2 = database:get(bot_id.."MaRcoS:nump"..msg.chat_id_) or 5
 send(msg.chat_id_, msg.id_,'⌯┇ التوحيد '..s1..'\n ⌯┇ عدد الكتم  : '..s2)
 end
 end
-if text == "تفعيل التوحيد" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تفعيل التوحيد" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تفعيل التوحيد')
 database:set(bot_id.."kt:twh:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل التوحيد" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تعطيل التوحيد" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل التوحيد')
 database:set(bot_id.."kt:twh:stats"..msg.chat_id_,"close")
 end
@@ -2288,11 +2288,11 @@ end
 bnnaGet(id, amir_MaRcoSa_new)
 end
 end
-if text == "تفعيل تنبيه الاسماء" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تفعيل تنبيه الاسماء" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تفعيل تنبيه الاسماء')
 database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل تنبيه الاسماء" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تعطيل تنبيه الاسماء" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل تنبيه الاسماء')
 database:set(bot_id.."Ttn:BBE:stats"..msg.chat_id_,"close")
 end
@@ -2322,11 +2322,11 @@ end
 end
 end,nil)   
 end
-if text == "تفعيل تنبيه المعرف" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تفعيل تنبيه المعرف" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تفعيل تنبيه المعرف')
 database:set(bot_id.."Ttn:Userr:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل تنبيه المعرف" and Constructor(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تعطيل تنبيه المعرف" and Constructor(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل تنبيه المعرف')
 database:set(bot_id.."Ttn:Userr:stats"..msg.chat_id_,"close")
 end
@@ -2360,11 +2360,11 @@ end
 end
 end,nil)   
 end
-if text == "تفعيل تنبيه الصور" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تفعيل تنبيه الصور" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تفعيل تنبيه الصور')
 database:set(bot_id.."Ttn:Ph:stats"..msg.chat_id_,"open")
 end
-if text == "تعطيل تنبيه الصور" and Manager(msg) and database:get(bot_id.."AL:Sre:stats") == "✔" then
+if text == "تعطيل تنبيه الصور" and Manager(msg) then
 send(msg.chat_id_, msg.id_, '⌯┇ تم تعطيل تنبيه الصور')
 database:set(bot_id.."Ttn:Ph:stats"..msg.chat_id_,"close")
 end
